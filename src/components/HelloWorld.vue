@@ -26,11 +26,11 @@ class Student {
   xingming: string
   nianling: number
   xuexiao: string
-  constructor(nj: number = 3, xm: string = '***', nl: number = 10, xx: string = '**'){
-    this.nianji = nj
-    this.xingming = xm
-    this.nianling = nl
-    this.xuexiao = xx
+  constructor(nianji: number = 3, xingming: string = '***', nianling: number = 10, xuexiao: string = '**'){
+    this.nianji = nianji
+    this.xingming = xingming
+    this.nianling = nianling
+    this.xuexiao = xuexiao
   }
   getAge(){
     return this.nianling
