@@ -47,7 +47,7 @@ export default class HelloWorld extends Vue {
   private sum: number = 0
   private person: Person = {
     name: '陈其文',
-    age: 18
+    age: 28
   }
   private xiaoming: Student = new Student(3,'小明',9,'三好小学')
   
