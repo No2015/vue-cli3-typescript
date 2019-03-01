@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" names="cqw" @getAge="getAge" />
+    <HelloWorld msg="SSH 测试" names="cqw" @getAge="getAge" />
   </div>
 </template>
 
