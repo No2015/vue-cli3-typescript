@@ -28,7 +28,12 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper'
     swiperSlide
   }
 })
-export default class About extends Vue {}
+export default class About extends Vue {
+  private swiperOption: object = {}
+  private callback(){
+    console.log('callback')
+  }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

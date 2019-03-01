@@ -4,12 +4,38 @@
     <input type="text" v-model="txt">
     <p>{{ getTxt }}</p>
     <button @click="add">add</button>
+    <button @click="about">to about</button>
     <p>{{ sum }}</p>
+    <p>name: <input type="text" v-model="person.name"></p>
+    <p>age: <input type="text" v-model.number="person.age" @input="returnAge(person.age)"></p>
+    {{ person }}
+    <p>{{ xiaoming }}</p>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import { Component, Prop, Vue, Watch, Emit } from 'vue-property-decorator';
+
+interface Person {
+  name: string,
+  age: number
+}
+
+class Student {
+  nianji: number
+  xingming: string
+  nianling: number
+  xuexiao: string
+  constructor(nj: number = 3, xm: string = '***', nl: number = 10, xx: string = '**'){
+    this.nianji = nj
+    this.xingming = xm
+    this.nianling = nl
+    this.xuexiao = xx
+  }
+  getAge(){
+    return this.nianling
+  }
+}
 
 @Component
 export default class HelloWorld extends Vue {
@@ -17,8 +43,20 @@ export default class HelloWorld extends Vue {
   @Prop() private msg!: string
   @Prop() private names!: string
   //data
-  private txt: string = '1'
+  private txt: string = 'hello world'
   private sum: number = 0
+  private person: Person = {
+    name: '陈其文',
+    age: 18
+  }
+  private xiaoming: Student = new Student(3,'小明',9,'三好小学')
+  
+  //emit
+  @Emit('getAge')
+  returnAge(age: number){
+    return age
+  }
+
   //computed
   get getTxt(){
     return this.txt
@@ -26,17 +64,27 @@ export default class HelloWorld extends Vue {
   //methods
   private add(){
     this.sum++
-    console.log(`sum : ${this.sum}`)
+    this.person.age++
+    //console.log(`sum : ${this.sum}`)
+  }
+  private about(){
+    this.$router.push('/about')
   }
   //生命周期
   created(){
-    console.log('created')
+    //console.log(this.xiaoming.getAge(),this.$store.state.open)
   }
   //watch
   @Watch('txt') 
   changeTxt(newTxt: string, oldTxt: string){
-    console.log(`change txt: ${oldTxt} to ${newTxt}`)
   }
+  @Watch('person',{deep: true})
+  changePerson(newPerson: Person, oldPerson: Person){
+  }
+  // @Watch('$route',{deep: true, immediate: true })
+  // private changeRouter(route: Route){
+  //     console.log(route)
+  // }
   
 }
 </script>

@@ -7,6 +7,16 @@
     <router-view/>
   </div>
 </template>
+<script lang="ts">
+import { Component, Prop, Vue, Watch, Emit } from 'vue-property-decorator';
+@Component
+export default class App extends Vue {
+  @Watch('$route',{deep: true, immediate: true })
+  private changeRouter(route: Route){
+      console.log(route)
+  }
+}
+</script>
 
 <style lang="less">
 #app {
