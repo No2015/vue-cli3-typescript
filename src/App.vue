@@ -9,11 +9,13 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
+import { Route } from 'vue-router';
+
 @Component
 export default class App extends Vue {
-  @Watch('$route',{deep: true, immediate: true })
-  private changeRouter(route: Route){
-      //console.log(route)
+  @Watch('$route', {deep: true, immediate: true })
+  private changeRouter(route: Route) {
+      console.log(route);
   }
 }
 </script>

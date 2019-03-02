@@ -17,30 +17,31 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import 'swiper/dist/css/swiper.css'
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css';
+import { swiper, swiperSlide } from 'vue-awesome-swiper';
+import { Route } from 'vue-router';
 
 @Component({
   components: {
     swiper,
-    swiperSlide
-  }
+    swiperSlide,
+  },
 })
 export default class About extends Vue {
-  private swiperOption: object = {}
-  private callback(){
-    console.log('callback')
+  private swiperOption: object = {};
+  private callback() {
+    console.log('callback');
   }
-  beforeRouteEnter(to: Route, from: Route, next: () => void): void {
-    console.log('beforeRouteEnter'); 
+  private beforeRouteEnter(to: Route, from: Route, next: () => void): void {
+    console.log('beforeRouteEnter');
     next();
   }
-  beforeRouteUpdate(to: Route, from: Route, next: () => void): void {
+  private beforeRouteUpdate(to: Route, from: Route, next: () => void): void {
     console.log('beforeRouteUpdate');
     next();
   }
-  beforeRouteLeave(to: Route, from: Route, next: () => void): void {
-    console.log('beforeRouteLeave'); 
+  private beforeRouteLeave(to: Route, from: Route, next: () => void): void {
+    console.log('beforeRouteLeave');
     next();
   }
 }
