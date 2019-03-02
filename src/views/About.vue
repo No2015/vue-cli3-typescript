@@ -3,14 +3,12 @@
     <h1>This is an about page</h1>
     <div class="wrap-swiper">
       <swiper :options="swiperOption" ref="mySwiper" @someSwiperEvent="callback">
-        <!-- slides -->
         <swiper-slide><img src="@/assets/logo.png" alt=""></swiper-slide>
         <swiper-slide><img src="@/assets/logo.png" alt=""></swiper-slide>
         <swiper-slide><img src="@/assets/logo.png" alt=""></swiper-slide>
         <swiper-slide><img src="@/assets/logo.png" alt=""></swiper-slide>
         <swiper-slide><img src="@/assets/logo.png" alt=""></swiper-slide>
         <swiper-slide><img src="@/assets/logo.png" alt=""></swiper-slide>
-        <!-- Optional controls -->
         <div class="swiper-pagination"  slot="pagination"></div>
       </swiper>
     </div>
@@ -32,6 +30,18 @@ export default class About extends Vue {
   private swiperOption: object = {}
   private callback(){
     console.log('callback')
+  }
+  beforeRouteEnter(to: Route, from: Route, next: () => void): void {
+    console.log('beforeRouteEnter'); 
+    next();
+  }
+  beforeRouteUpdate(to: Route, from: Route, next: () => void): void {
+    console.log('beforeRouteUpdate');
+    next();
+  }
+  beforeRouteLeave(to: Route, from: Route, next: () => void): void {
+    console.log('beforeRouteLeave'); 
+    next();
   }
 }
 </script>

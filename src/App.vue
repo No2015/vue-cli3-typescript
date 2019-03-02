@@ -13,7 +13,7 @@ import { Component, Vue, Watch } from 'vue-property-decorator';
 export default class App extends Vue {
   @Watch('$route',{deep: true, immediate: true })
   private changeRouter(route: Route){
-      console.log(route)
+      //console.log(route)
   }
 }
 </script>
