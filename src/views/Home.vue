@@ -21,5 +21,9 @@ export default class Home extends Vue {
   private getAge(num: number = 0) {
     this.num = num;
   }
+  private beforeDestroy(){
+    // 在这里执行定时器的清除
+    console.log('beforeDestroy')
+  }
 }
 </script>
