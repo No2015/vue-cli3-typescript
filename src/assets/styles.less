@@ -1,0 +1,150 @@
+/*----- reset css -----*/
+body,dl,dd,ul,ol,h1,h2,h3,h4,h5,h6,pre,p,fieldset,input,textarea,blockquote{margin: 0;}
+ul,ol,input,textarea,fieldset,th,td{padding: 0;}
+fieldset,img,abbr,acronym{border: 0;}
+ol,ul{list-style: none;}
+input,textarea{border-width: 1px;outline: none;box-shadow: none;-webkit-appearance: none;}
+address,caption,cite,code,dfn,em,strong,th,var,i{font-weight: normal;font-style: normal;}
+table{border-collapse: collapse;border-spacing: 0;}
+h1,h2,h3,h4,h5,h6{font-weight: normal;font-size: 100%;}
+q:before,q:after{content:'';}
+img,canvas{vertical-align: top;}
+caption,th{text-align: center;}
+a{color: #6f798b; text-decoration: none; cursor: pointer;}
+body{font-family:Microsoft YaHei,Arial,Helvetica,sans-serif;}
+:focus{outline: none;}
+.pull-left{ float: left !important}
+.pull-right{ float: right !important}
+.clearfix:after{
+	content: "";
+	clear: both;
+	display: block;
+	width: 0;
+	height: 0;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: color 99999s ease-out, background-color 99999s ease-out;
+    -webkit-transition: color 99999s ease-out, background-color 99999s ease-out;
+    transition-delay: 99999s;
+    -webkit-transition-delay: 99999s;
+}
+input::-webkit-input-placeholder{ /* WebKit browsers */
+color: rgba(111,121,139,.5);
+} 
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+color: rgba(111,121,139,.5);
+} 
+input:-ms-placeholder { /* Mozilla Firefox 4 to 18 */
+color: rgba(111,121,139,.5);
+} 
+input::-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+color: rgba(111,121,139,.5);
+} 
+input:placeholder { /* Mozilla Firefox 4 to 18 */
+color: rgba(111,121,139,.5);
+}
+
+*{
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+    outline:none;
+}
+:selection { 
+    background: #FFF; 
+    color: #333; 
+} 
+:-moz-selection { 
+    background: #FFF; 
+    color: #333; 
+}
+:-webkit-selection { 
+    background: #FFF; 
+    color: #333; 
+}
+::selection { 
+    background: #FFF; 
+    color: #333; 
+} 
+::-moz-selection { 
+    background: #FFF; 
+    color: #333; 
+} 
+::-webkit-selection { 
+    background: #FFF; 
+    color: #333; 
+}  
+input{
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+/*---- layout ----*/
+html,body,#app,.home-page{
+    height: 100%;
+    position: relative;
+}
+/*---- flex实现 ----*/
+.flex-box{
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    &.align-top{
+        align-items: flex-start;
+    }
+    &.align-bottom{
+        align-items: flex-end;
+    }
+    li{
+        flex-grow: 1;
+        width: 0;
+    }
+    .flex-item-1{
+        flex-grow: 1;
+    }
+    .flex-item-1{
+        flex-grow: 1;
+    }
+    .flex-item-2{
+        flex-grow: 2;
+    }
+    .flex-item-3{
+        flex-grow: 3;
+    }
+    .flex-item-4{
+        flex-grow: 4;
+    }
+    .flex-item-5{
+        flex-grow: 5;
+    }
+    .flex-item-6{
+        flex-grow: 6;
+    }
+    .flex-item-7{
+        flex-grow: 7;
+    }
+    .flex-item-8{
+        flex-grow: 8;
+    }
+    .flex-item-9{
+        flex-grow: 9;
+    }
+    .flex-item-10{
+        flex-grow: 10;
+    }
+    .flex-item-11{
+        flex-grow: 11;
+    }
+    .flex-item-12{
+        flex-grow: 12;
+    }
+}
+.tc{
+    text-align: center;
+}
+.tl{
+    text-align: left;
+}
+.tr{
+    text-align: right;
+}

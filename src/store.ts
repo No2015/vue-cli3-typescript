@@ -1,26 +1,74 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+import VueAxios from 'vue-axios';
+import qs from 'qs';
+
+axios.defaults.headers.post['Accept'] = 'application/json, text/javascript, */*; q=0.01';
+axios.defaults.headers.post['X-Requested-With'] = 'xmlhttprequest';
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
+axios.interceptors.request.use((config) => {
+  config.data = qs.stringify(config.data, {arrayFormat: 'brackets'});
+  return config;
+});
 
 Vue.use(Vuex);
+Vue.use(VueAxios, axios);
+
+let userInfo = {
+  "name": "",
+  "id": 0,
+  "avatar": "",
+  "integral": 0,
+  "level": 0
+};
 
 export default new Vuex.Store({
   state: {
-    open: !0,
+    homeList: [],
+    pageLoad: !0,
+    goodsdetail: {},
+    cartList: [],
+    userInfo: userInfo,
   },
   mutations: {
-    toggleOpen(state, open) {
-      state.open = !open;
+    setPageLoad(state, load){
+      setTimeout(() => {
+        state.pageLoad = load;
+      }, 1e3);
+    },
+    getHomeList(state, list) {
+      state.homeList = list;
+    },
+    getCartList(state, list) {
+      state.cartList = list;
+    },
+    getUser(state, userInfo) {
+      state.userInfo = userInfo;
     },
   },
   actions: {
-    todoOpen(context, open) {
-      axios.get('https://api.coindesk.com/v1/bpi/currentprice.json', {}).then((response: any) => {
-        console.log(response.data);
+    initHomePage(context) {
+      context.dispatch('initUserInfo');
+      axios.get('/api/goodslist.json', {}).then((response: any) => {
+        context.commit('getHomeList', response.data);
       });
-      // setTimeout(() => {
-      //   context.commit('toggleOpen', open);
-      // }, 1e3);
+      context.commit('setPageLoad', !1);
     },
+    initCartPage(context) {
+      context.dispatch('initUserInfo');
+      axios.get('/api/cart.json', {}).then((response: any) => {
+        context.commit('getCartList', response.data);
+      });
+      context.commit('setPageLoad', !1);
+    },
+    initUserInfo(context) {
+      if(context.state.userInfo.id !== 0){
+        return !1;
+      }
+      axios.get('/api/user.json', {}).then((response: any) => {
+        context.commit('getUser', response.data);
+      });
+    }
   },
 });

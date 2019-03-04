@@ -1,4 +1,4 @@
-# vue-shop
+# vue-cli3-typescript
 
 ## Project setup
 ```
@@ -27,4 +27,4 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-# vue-shop
+# vue-cli3-typescript
