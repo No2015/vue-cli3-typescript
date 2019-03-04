@@ -3,8 +3,9 @@
     <h1>{{ msg }}--{{ names }}</h1>
     <input type="text" v-model="txt">
     <p>{{ getTxt }}</p>
+    <p><button @click="toggleOpen">toggleOpen</button> open: {{ $store.state.open }}</p>
     <button @click="add">add</button>
-    <button @click="about">to about</button>
+    <button @click="about" v-show="$store.state.open">to about</button>
     <p>{{ sum }}</p>
     <p>name: <input type="text" v-model="person.name"></p>
     <p>age: <input type="text" v-model.number="person.age" @input="returnAge(person.age)"></p>
@@ -69,6 +70,9 @@ export default class HelloWorld extends Vue {
   }
   private about() {
     this.$router.push('/about');
+  }
+  private toggleOpen() {
+    this.$store.dispatch('todoOpen', this.$store.state.open);
   }
   // 生命周期
   private created() {

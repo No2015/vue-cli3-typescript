@@ -8,9 +8,15 @@ export default new Vuex.Store({
     open: !0,
   },
   mutations: {
-
+    toggleOpen(state, open) {
+      setTimeout(() => {
+        state.open = !open;
+      }, 1e3);
+    },
   },
   actions: {
-
+    todoOpen(context, open) {
+      context.commit('toggleOpen', open);
+    },
   },
 });
