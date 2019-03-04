@@ -33,15 +33,15 @@ export default class About extends Vue {
     console.log('callback');
   }
   private beforeRouteEnter(to: Route, from: Route, next: () => void): void {
-    console.log('beforeRouteEnter');
+    // console.log('beforeRouteEnter');
     next();
   }
   private beforeRouteUpdate(to: Route, from: Route, next: () => void): void {
-    console.log('beforeRouteUpdate');
+    // console.log('beforeRouteUpdate');
     next();
   }
   private beforeRouteLeave(to: Route, from: Route, next: () => void): void {
-    console.log('beforeRouteLeave');
+    // console.log('beforeRouteLeave');
     next();
   }
 }
