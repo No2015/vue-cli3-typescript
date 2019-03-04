@@ -11,7 +11,7 @@ import Loading from '@/components/layout/Loading.vue';
 @Component({
   components: {
     Loading,
-  }
+  },
 })
 export default class App extends Vue {}
 </script>

@@ -14,6 +14,6 @@ import Item from './Item.vue';
   },
 })
 export default class HomeList extends Vue {
-  
+
 }
 </script>

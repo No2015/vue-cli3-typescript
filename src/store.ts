@@ -4,7 +4,7 @@ import axios from 'axios';
 import VueAxios from 'vue-axios';
 import qs from 'qs';
 
-axios.defaults.headers.post['Accept'] = 'application/json, text/javascript, */*; q=0.01';
+axios.defaults.headers.post.Accept = 'application/json, text/javascript, */*; q=0.01';
 axios.defaults.headers.post['X-Requested-With'] = 'xmlhttprequest';
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
 axios.interceptors.request.use((config) => {
@@ -15,12 +15,12 @@ axios.interceptors.request.use((config) => {
 Vue.use(Vuex);
 Vue.use(VueAxios, axios);
 
-let userInfo = {
-  "name": "",
-  "id": 0,
-  "avatar": "",
-  "integral": 0,
-  "level": 0
+const userInfo = {
+  name: '',
+  id: 0,
+  avatar: '',
+  integral: 0,
+  level: 0,
 };
 
 export default new Vuex.Store({
@@ -29,10 +29,10 @@ export default new Vuex.Store({
     pageLoad: !0,
     goodsdetail: {},
     cartList: [],
-    userInfo: userInfo,
+    userInfo,
   },
   mutations: {
-    setPageLoad(state, load){
+    setPageLoad(state, load) {
       setTimeout(() => {
         state.pageLoad = load;
       }, 1e3);
@@ -43,8 +43,8 @@ export default new Vuex.Store({
     getCartList(state, list) {
       state.cartList = list;
     },
-    getUser(state, userInfo) {
-      state.userInfo = userInfo;
+    getUser(state, info) {
+      state.userInfo = info;
     },
   },
   actions: {
@@ -63,12 +63,12 @@ export default new Vuex.Store({
       context.commit('setPageLoad', !1);
     },
     initUserInfo(context) {
-      if(context.state.userInfo.id !== 0){
+      if (context.state.userInfo.id !== 0) {
         return !1;
       }
       axios.get('/api/user.json', {}).then((response: any) => {
         context.commit('getUser', response.data);
       });
-    }
+    },
   },
 });

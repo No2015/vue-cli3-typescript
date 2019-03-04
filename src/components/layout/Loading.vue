@@ -9,7 +9,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 
 @Component
 export default class Loading extends Vue {
-    @Prop() loading!: boolean;
+    @Prop() public loading!: boolean;
 }
 </script>
 

@@ -17,7 +17,7 @@ import Footer from '@/components/layout/Footer.vue';
   },
 })
 export default class Cart extends Vue {
-  created() {
+  public created() {
     this.$store.dispatch('initCartPage');
   }
 }

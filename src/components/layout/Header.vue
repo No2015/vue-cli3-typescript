@@ -14,8 +14,8 @@ import { Component, Vue, Watch, Prop } from 'vue-property-decorator';
 
 @Component
 export default class Header extends Vue {
-  @Prop() avatar!: string;
-  
+  @Prop() public avatar!: string;
+
   private toUser() {
     this.$router.push({ name: 'center'});
   }

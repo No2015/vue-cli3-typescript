@@ -15,7 +15,7 @@ import List from './List.vue';
   },
 })
 export default class HomeIndex extends Vue {
-  
+
 }
 </script>
 

@@ -14,6 +14,6 @@ import { Component, Vue } from 'vue-property-decorator';
   },
 })
 export default class Goods extends Vue {
-  
+
 }
 </script>

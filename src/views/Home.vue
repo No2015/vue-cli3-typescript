@@ -20,7 +20,7 @@ import Footer from '@/components/layout/Footer.vue';
   },
 })
 export default class Home extends Vue {
-  created() {
+  public created() {
     this.$store.dispatch('initHomePage');
   }
 }
