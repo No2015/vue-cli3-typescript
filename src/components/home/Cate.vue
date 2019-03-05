@@ -1,10 +1,10 @@
 <template>
-  <div class="product">
-    <div class="list-head">
-      <span>商品推荐</span>
-    </div>
-    <div class="list clearfix">
-        <div class="list-item pull-left tc" v-for="(item, index) in list" :key="index" @click="toProduct(item.id)">
+  <div class="category">
+    <div class="cate-head">
+        <span>热销分类</span>
+      </div>
+      <div class="cate clearfix">
+        <div class="cate-item pull-left tc" v-for="(item, index) in cate" :key="index" @click="toCate(item.id)">
           <img :src="item.img" :alt="item.title">
           <p class="price">￥{{ item.price }}</p>
           <p class="title">{{ item.title }}</p>
@@ -17,19 +17,19 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 
 @Component
-export default class HomeList extends Vue {
-  get list() {
-    return this.$store.state.homeList;
+export default class Cate extends Vue {
+  get cate() {
+    return this.$store.state.homeCate;
   }
 
-  private toProduct(id: string) {
-    this.$router.push({ name: 'goods', query: { id: id }});
+  private toCate(id: number) {
+    console.log(id);
   }
 }
 </script>
 
 <style lang="less" scoped>
-.list-head{
+.cate-head{
   height: 20px;
   font-size: 18px;
   line-height: 20px;
@@ -41,14 +41,12 @@ export default class HomeList extends Vue {
     padding-left: 5px;
   }
 }
-.list{
+.cate{
   padding: 10px 0;
   border-bottom: 1px solid #f6f6f6;
-  .list-item{
-    width: 50%;
-    padding: 10px;
-    /*border: 1px solid #f9f9f9;*/
-    box-sizing: border-box;
+  .cate-item{
+    width: 25%;
+    padding: 10px 0;
     img{
       width: 50%;
     }
@@ -59,11 +57,10 @@ export default class HomeList extends Vue {
       color: rgb(163, 69, 69);
     }
     .title{
-      font-size: 12px;
-      height: 36px;
-      overflow: hidden;
-      line-height: 18px;
-      color: #777;
+      font-size: 14px;
+      height: 24px;
+      line-height: 24px;
+      color: #666;
     }
   }
 }
