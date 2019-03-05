@@ -4,7 +4,7 @@ import router from './router';
 import store from './store';
 import { Component } from 'vue-property-decorator';
 import './assets/styles.less';
-import storage from "./global/storage";
+import storage from './global/storage';
 
 Vue.prototype.$storage = storage;
 Vue.config.productionTip = false;
