@@ -33,6 +33,10 @@ export default class Footer extends Vue {}
         font-size: 12px;
         display: block;
         height: 42px;
+        line-height: 42px;
+        &.router-link-exact-active{
+          color: #ff5a0c;
+        }
     }
 }
 </style>

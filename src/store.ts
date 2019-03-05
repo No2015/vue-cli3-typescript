@@ -26,6 +26,7 @@ const userInfo = {
 export default new Vuex.Store({
   state: {
     homeList: [],
+    homeCate: [],
     pageLoad: !0,
     goodsdetail: {},
     cartList: [],
@@ -43,6 +44,9 @@ export default new Vuex.Store({
     getCartList(state, list) {
       state.cartList = list;
     },
+    getHomeCate(state, list) {
+      state.homeCate = list;
+    },
     getUser(state, info) {
       state.userInfo = info;
     },
@@ -52,6 +56,9 @@ export default new Vuex.Store({
       context.dispatch('initUserInfo');
       axios.get('/api/goodslist.json', {}).then((response: any) => {
         context.commit('getHomeList', response.data);
+      });
+      axios.get('/api/cate.json', {}).then((response: any) => {
+        context.commit('getHomeCate', response.data);
       });
       context.commit('setPageLoad', !1);
     },
