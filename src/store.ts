@@ -28,6 +28,7 @@ export default new Vuex.Store({
     homeList: [],
     homeBanner: [],
     homeCate: [],
+    searchList: [],
     pageLoad: !0,
     goodsdetail: {},
     cartList: [],
@@ -51,6 +52,9 @@ export default new Vuex.Store({
     getHomeCate(state, list) {
       state.homeCate = list;
     },
+    getSearchList(state, list) {
+      state.searchList = list;
+    },
     getUser(state, info) {
       state.userInfo = info;
     },
@@ -73,6 +77,13 @@ export default new Vuex.Store({
       context.dispatch('initUserInfo');
       axios.get('/api/cart.json', {}).then((response: any) => {
         context.commit('getCartList', response.data);
+      });
+      context.commit('setPageLoad', !1);
+    },
+    initSearchPage(context) {
+      context.dispatch('initUserInfo');
+      axios.get('/api/search.json', {}).then((response: any) => {
+        context.commit('getSearchList', response.data);
       });
       context.commit('setPageLoad', !1);
     },

@@ -42,7 +42,7 @@ export default class HomeList extends Vue {
   }
 }
 .list{
-  padding: 10px 0;
+  padding: 10px;
   border-bottom: 1px solid #f6f6f6;
   .list-item{
     width: 50%;
@@ -50,7 +50,7 @@ export default class HomeList extends Vue {
     /*border: 1px solid #f9f9f9;*/
     box-sizing: border-box;
     img{
-      width: 50%;
+      width: 100%;
     }
     .price{
       font-size: 12px;
