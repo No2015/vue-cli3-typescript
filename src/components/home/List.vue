@@ -15,15 +15,12 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
-import Item from './Item.vue';
 
-@Component({
-  components: {
-    Item,
-  },
-})
+@Component
 export default class HomeList extends Vue {
-  @Prop() list!: Array<any>;
+  get list() {
+    return this.$store.state.homeList;
+  }
 
   private toProduct(id: string) {
     this.$router.push({ name: 'goods', query: { id: id }});

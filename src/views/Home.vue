@@ -1,7 +1,7 @@
 <template>
   <div class="home-page">
-    <Header :avatar="$store.state.userInfo.avatar" />
-    <Content :cate="$store.state.homeCate" />
+    <Header />
+    <Content />
     <Footer />
   </div>
 </template>

@@ -26,6 +26,7 @@ const userInfo = {
 export default new Vuex.Store({
   state: {
     homeList: [],
+    homeBanner: [],
     homeCate: [],
     pageLoad: !0,
     goodsdetail: {},
@@ -40,6 +41,9 @@ export default new Vuex.Store({
     },
     getHomeList(state, list) {
       state.homeList = list;
+    },
+    getHomeBanner(state, list) {
+      state.homeBanner = list;
     },
     getCartList(state, list) {
       state.cartList = list;
@@ -59,6 +63,9 @@ export default new Vuex.Store({
       });
       axios.get('/api/cate.json', {}).then((response: any) => {
         context.commit('getHomeCate', response.data);
+      });
+      axios.get('/api/banner.json', {}).then((response: any) => {
+        context.commit('getHomeBanner', response.data);
       });
       context.commit('setPageLoad', !1);
     },

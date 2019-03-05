@@ -19,7 +19,10 @@ import { Component, Vue, Watch, Prop } from 'vue-property-decorator';
 
 @Component
 export default class Header extends Vue {
-  @Prop() public avatar!: string;
+  // @Prop() public avatar!: string;
+  get avatar() {
+    return this.$store.state.userInfo.avatar;
+  }
 
   private key: string = '';
 

@@ -1,6 +1,7 @@
 <template>
   <div id="content">
     <div class="home">
+      <Banner />
       <div class="cate-head">
         <span>热销分类</span>
       </div>
@@ -12,21 +13,25 @@
         </div>
       </div>
     </div>
-    <List :list="$store.state.homeList" />
+    <List />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
+import Banner from './Banner.vue';
 import List from './List.vue';
 
 @Component({
   components: {
+    Banner,
     List,
   },
 })
 export default class HomeIndex extends Vue {
-  @Prop() cate!: Array<any>;
+  get cate() {
+    return this.$store.state.homeCate;
+  }
 
   private toCate(id: number) {
     console.log(id);
