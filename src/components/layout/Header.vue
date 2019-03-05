@@ -20,17 +20,22 @@ import { Component, Vue, Watch, Prop } from 'vue-property-decorator';
 @Component
 export default class Header extends Vue {
   // @Prop() public avatar!: string;
-  get avatar() {
-    return this.$store.state.userInfo.avatar;
-  }
-
   private key: string = '';
 
   private toUser() {
     this.$router.push({ name: 'center'});
   }
   private toSearch() {
-    this.$router.push({ name: 'search', query: {keywords: this.key} });
+    if (this.key.trim() === '') {
+      return !1;
+    }
+    this.$router.push({ path: 'search', query: {keywords: this.key} });
+  }
+  get avatar() {
+    return this.$store.state.userInfo.avatar;
+  }
+  public created() {
+    this.key = this.$store.state.searchKeywords;
   }
 }
 </script>

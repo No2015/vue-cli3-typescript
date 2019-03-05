@@ -27,10 +27,10 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper';
 export default class HomeBanner extends Vue {
   private swiperOption: any = {
     loop: true,
-    //effect: 'fade'
+    // effect: 'fade'
   };
   private callback() {
-    console.log('run')
+    console.log('run');
   }
   private toUrl(url: string) {
     this.$router.push(url);

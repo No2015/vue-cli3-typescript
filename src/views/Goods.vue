@@ -14,6 +14,14 @@ import { Component, Vue } from 'vue-property-decorator';
   },
 })
 export default class Goods extends Vue {
-
+  public beforeMount() {
+    if (!this.$route.query.gid) {
+      this.$router.back();
+    }
+  }
+  public created() {
+    const gid = this.$route.query.gid;
+    //this.$store.dispatch('initSearchPage', gid);
+  }
 }
 </script>

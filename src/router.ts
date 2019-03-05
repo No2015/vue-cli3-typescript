@@ -33,5 +33,10 @@ export default new Router({
       name: 'search',
       component: () => import('./views/Search.vue'),
     },
+    {
+      path: '/cate',
+      name: 'cate',
+      component: () => import('./views/Cate.vue'),
+    },
   ],
 });

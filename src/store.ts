@@ -29,12 +29,21 @@ export default new Vuex.Store({
     homeBanner: [],
     homeCate: [],
     searchList: [],
+    searchKeywords: '',
+    cateList: [],
+    cateTitle: '',
     pageLoad: !0,
     goodsdetail: {},
     cartList: [],
     userInfo,
   },
   mutations: {
+    setSearchKeywords(state, keywords) {
+      state.searchKeywords = keywords;
+    },
+    setCateTitle(state, title) {
+      state.cateTitle = title;
+    },
     setPageLoad(state, load) {
       setTimeout(() => {
         state.pageLoad = load;
@@ -55,6 +64,9 @@ export default new Vuex.Store({
     getSearchList(state, list) {
       state.searchList = list;
     },
+    getCateList(state, list) {
+      state.cateList = list;
+    },
     getUser(state, info) {
       state.userInfo = info;
     },
@@ -62,15 +74,21 @@ export default new Vuex.Store({
   actions: {
     initHomePage(context) {
       context.dispatch('initUserInfo');
-      axios.get('/api/goodslist.json', {}).then((response: any) => {
-        context.commit('getHomeList', response.data);
-      });
-      axios.get('/api/cate.json', {}).then((response: any) => {
-        context.commit('getHomeCate', response.data);
-      });
-      axios.get('/api/banner.json', {}).then((response: any) => {
-        context.commit('getHomeBanner', response.data);
-      });
+      if (context.state.homeList.length == 0) {
+        axios.get('/api/goodslist.json', {}).then((response: any) => {
+          context.commit('getHomeList', response.data);
+        });
+      }
+      if (context.state.homeCate.length == 0) {
+        axios.get('/api/cate.json', {}).then((response: any) => {
+          context.commit('getHomeCate', response.data);
+        });
+      }
+      if (context.state.homeBanner.length == 0) {
+        axios.get('/api/banner.json', {}).then((response: any) => {
+          context.commit('getHomeBanner', response.data);
+        });
+      }
       context.commit('setPageLoad', !1);
     },
     initCartPage(context) {
@@ -80,10 +98,19 @@ export default new Vuex.Store({
       });
       context.commit('setPageLoad', !1);
     },
-    initSearchPage(context) {
+    initSearchPage(context, keywords) {
       context.dispatch('initUserInfo');
-      axios.get('/api/search.json', {}).then((response: any) => {
+      axios.get('/api/search.json', { params: {"keywords": keywords} }).then((response: any) => {
         context.commit('getSearchList', response.data);
+      });
+      context.commit('setSearchKeywords', keywords);
+      context.commit('setPageLoad', !1);
+    },
+    initCatePage(context, cid) {
+      context.dispatch('initUserInfo');
+      axios.get('/api/catePage.json', { params: {"cid": cid} }).then((response: any) => {
+        context.commit('getCateList', response.data.data);
+        context.commit('setCateTitle', response.data.title);
       });
       context.commit('setPageLoad', !1);
     },

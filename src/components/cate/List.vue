@@ -1,8 +1,5 @@
 <template>
   <div class="product">
-    <div class="list-head">
-      <span>商品推荐</span>
-    </div>
     <div class="list clearfix">
       <div class="list-item pull-left tc" v-for="(item, index) in list" :key="index" @click="toProduct(item.id)">
         <img :src="item.img" :alt="item.title">
@@ -17,9 +14,9 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 
 @Component
-export default class HomeList extends Vue {
+export default class SearchList extends Vue {
   get list() {
-    return this.$store.state.homeList;
+    return this.$store.state.cateList;
   }
 
   private toProduct(id: string) {
@@ -29,18 +26,6 @@ export default class HomeList extends Vue {
 </script>
 
 <style lang="less" scoped>
-.list-head{
-  height: 20px;
-  font-size: 18px;
-  line-height: 20px;
-  padding: 20px 10px 10px;
-  span{
-    display: block;
-    height: 20px;
-    border-left: 2px solid #ff5a0c;
-    padding-left: 5px;
-  }
-}
 .list{
   padding: 10px;
   border-bottom: 1px solid #f6f6f6;

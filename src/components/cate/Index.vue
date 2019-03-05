@@ -13,7 +13,7 @@ import List from './List.vue';
     List,
   },
 })
-export default class SearchIndex extends Vue {}
+export default class CateIndex extends Vue {}
 </script>
 
 <style lang="less" scoped>

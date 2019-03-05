@@ -17,13 +17,13 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 
 @Component
-export default class Cate extends Vue {
+export default class HomeCate extends Vue {
   get cate() {
     return this.$store.state.homeCate;
   }
 
-  private toCate(id: number) {
-    console.log(id);
+  private toCate(id: string) {
+    this.$router.push({ path: 'cate', query: { cid: id } });
   }
 }
 </script>
