@@ -22,6 +22,9 @@ export default class Header extends Vue {
   // @Prop() public avatar!: string;
   private key: string = '';
 
+  public created() {
+    this.key = this.$store.state.searchKeywords;
+  }
   private toUser() {
     this.$router.push({ name: 'center'});
   }
@@ -33,9 +36,6 @@ export default class Header extends Vue {
   }
   get avatar() {
     return this.$store.state.userInfo.avatar;
-  }
-  public created() {
-    this.key = this.$store.state.searchKeywords;
   }
 }
 </script>

@@ -21,7 +21,7 @@ export default class Goods extends Vue {
   }
   public created() {
     const gid = this.$route.query.gid;
-    //this.$store.dispatch('initSearchPage', gid);
+    this.$store.dispatch('initGoodsDetail', gid);
   }
 }
 </script>

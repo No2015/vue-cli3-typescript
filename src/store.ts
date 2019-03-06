@@ -33,7 +33,7 @@ export default new Vuex.Store({
     cateList: [],
     cateTitle: '',
     pageLoad: !0,
-    goodsdetail: {},
+    goodsDetail: {},
     cartList: [],
     userInfo,
   },
@@ -67,24 +67,26 @@ export default new Vuex.Store({
     setCateList(state, list) {
       state.cateList = list;
     },
+    setGoodsDetail(state, detail) {
+      state.goodsDetail = detail;
+    },
     setUser(state, info) {
       state.userInfo = info;
     },
   },
   actions: {
     initHomePage(context) {
-      context.dispatch('initUserInfo');
-      if (context.state.homeList.length == 0) {
+      if (context.state.homeList.length === 0) {
         axios.get('/api/goodslist.json', {}).then((response: any) => {
           context.commit('setHomeList', response.data);
         });
       }
-      if (context.state.homeCate.length == 0) {
+      if (context.state.homeCate.length === 0) {
         axios.get('/api/cate.json', {}).then((response: any) => {
           context.commit('setHomeCate', response.data);
         });
       }
-      if (context.state.homeBanner.length == 0) {
+      if (context.state.homeBanner.length === 0) {
         axios.get('/api/banner.json', {}).then((response: any) => {
           context.commit('setHomeBanner', response.data);
         });
@@ -92,16 +94,14 @@ export default new Vuex.Store({
       context.commit('setPageLoad', !1);
     },
     initCartPage(context) {
-      context.dispatch('initUserInfo');
       axios.get('/api/cart.json', {}).then((response: any) => {
         context.commit('setCartList', response.data);
       });
       context.commit('setPageLoad', !1);
     },
     initSearchPage(context, keywords) {
-      context.dispatch('initUserInfo');
-      if (keywords !== context.state.searchKeywords){
-        axios.get('/api/search.json', { params: {"keywords": keywords} }).then((response: any) => {
+      if (keywords !== context.state.searchKeywords) {
+        axios.get('/api/search.json', { params: { keywords } }).then((response: any) => {
           context.commit('setSearchList', response.data);
         });
         context.commit('setSearchKeywords', keywords);
@@ -109,10 +109,15 @@ export default new Vuex.Store({
       context.commit('setPageLoad', !1);
     },
     initCatePage(context, cid) {
-      context.dispatch('initUserInfo');
-      axios.get('/api/catePage.json', { params: {"cid": cid} }).then((response: any) => {
+      axios.get('/api/catePage.json', { params: { cid } }).then((response: any) => {
         context.commit('setCateList', response.data.data);
         context.commit('setCateTitle', response.data.title);
+      });
+      context.commit('setPageLoad', !1);
+    },
+    initGoodsDetail(context, gid) {
+      axios.get('/api/goodsdetail.json', { params: { gid } }).then((response: any) => {
+        context.commit('setGoodsDetail', response.data);
       });
       context.commit('setPageLoad', !1);
     },

@@ -16,7 +16,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 
 @Component
 export default class Header extends Vue {
-  @Prop() title!: string;
+  @Prop() private title!: string;
   private back() {
     this.$router.back();
   }

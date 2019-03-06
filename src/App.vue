@@ -13,5 +13,9 @@ import Loading from '@/components/layout/Loading.vue';
     Loading,
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  public beforeMount() {
+    this.$store.dispatch('initUserInfo');
+  }
+}
 </script>
