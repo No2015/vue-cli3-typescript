@@ -13,5 +13,5 @@ export const goodsDetail = {
     title: '',
     detail: '',
     sale: '',
-    imgs: []
+    imgs: [],
 };
