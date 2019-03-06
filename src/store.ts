@@ -1,28 +1,9 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import axios from 'axios';
-import VueAxios from 'vue-axios';
-import qs from 'qs';
-
-axios.defaults.headers.post.Accept = 'application/json, text/javascript, */*; q=0.01';
-axios.defaults.headers.post['X-Requested-With'] = 'xmlhttprequest';
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
-axios.interceptors.request.use((config) => {
-  config.data = qs.stringify(config.data, {arrayFormat: 'brackets'});
-  return config;
-});
+import axios from '@/global/axios';
+import { userInfo, goodsDetail } from '@/store/model';
 
 Vue.use(Vuex);
-Vue.use(VueAxios, axios);
-
-const userInfo = {
-  name: '',
-  id: 0,
-  avatar: '',
-  integral: 0,
-  level: 0,
-};
-
 export default new Vuex.Store({
   state: {
     homeList: [],
@@ -33,8 +14,8 @@ export default new Vuex.Store({
     cateList: [],
     cateTitle: '',
     pageLoad: !0,
-    goodsDetail: {},
     cartList: [],
+    goodsDetail,
     userInfo,
   },
   mutations: {

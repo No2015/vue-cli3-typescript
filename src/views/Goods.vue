@@ -1,6 +1,6 @@
 <template>
   <div class="goods">
-    
+    {{ goodsDetail }}
   </div>
 </template>
 
@@ -22,6 +22,9 @@ export default class Goods extends Vue {
   public created() {
     const gid = this.$route.query.gid;
     this.$store.dispatch('initGoodsDetail', gid);
+  }
+  get goodsDetail() {
+    return this.$store.state.goodsDetail;
   }
 }
 </script>
