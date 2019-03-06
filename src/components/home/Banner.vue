@@ -3,9 +3,9 @@
     <div class="wrap-swiper">
       <swiper v-if="banner.length > 0" :options="swiperOption" ref="mySwiper" @someSwiperEvent="callback">
         <swiper-slide v-for="(item, index) in banner" :key="index">
-          <span @click="toUrl(item.url)">
+          <router-link :to="item.url">
             <img :src="item.img" alt="">
-          </span>
+          </router-link>
         </swiper-slide>
         <div class="swiper-pagination" slot="pagination"></div>
       </swiper>
@@ -36,9 +36,6 @@ export default class HomeBanner extends Vue {
   // public created() {}
   private callback() {
     console.log('run');
-  }
-  private toUrl(url: string) {
-    this.$router.push(url);
   }
   get banner() {
     return this.$store.state.homeBanner;
