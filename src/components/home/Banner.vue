@@ -1,7 +1,7 @@
 <template>
   <div class="banner">
     <div class="wrap-swiper">
-      <swiper :options="swiperOption" ref="mySwiper" @someSwiperEvent="callback">
+      <swiper v-if="banner.length > 0" :options="swiperOption" ref="mySwiper" @someSwiperEvent="callback">
         <swiper-slide v-for="(item, index) in banner" :key="index">
           <span @click="toUrl(item.url)">
             <img :src="item.img" alt="">
