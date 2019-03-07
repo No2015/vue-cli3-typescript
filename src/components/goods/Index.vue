@@ -1,27 +1,35 @@
 <template>
-  <div id="content">
+  <div id="content" @scroll="scroll" ref="content">
     <Banner />
-    <List />
+    <Info />
+    <Content :scrollTop="scrollTop" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import Banner from './Banner.vue';
-import List from './List.vue';
+import Info from './Info.vue';
+import Content from './Content.vue';
 
 @Component({
   components: {
     Banner,
-    List,
+    Info,
+    Content,
   },
 })
-export default class GoodsIndex extends Vue {}
+export default class GoodsIndex extends Vue {
+  private scrollTop: number  = 0;
+  private scroll() {
+    this.scrollTop = this.$refs.content.scrollTop;
+  }
+}
 </script>
 
 <style lang="less" scoped>
 #content{
-  top: 42px;
+  top: 0;
   bottom: 42px;
   position: absolute;
   left: 0;

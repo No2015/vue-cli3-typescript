@@ -1,16 +1,19 @@
 <template>
-  <div class="goods">
+  <div class="home-page">
     <Content />
+    <Footer />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import Content from '@/components/goods/Index.vue'; // @ is an alias to /src
+import Footer from '@/components/layout/GoodsFooter.vue'; // @ is an alias to /src
 
 @Component({
   components: {
     Content,
+    Footer,
   },
 })
 export default class Goods extends Vue {

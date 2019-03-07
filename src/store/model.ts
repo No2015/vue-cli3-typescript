@@ -9,9 +9,13 @@ export const goodsDetail = {
     id: '',
     img: '',
     banner: [],
-    price: '',
-    title: '',
-    detail: '',
-    sale: '',
+    info: {
+        price: '',
+        title: '',
+        detail: '',
+        sale: '',
+    },
+    params: [],
+    comments: [],
     imgs: [],
 };
