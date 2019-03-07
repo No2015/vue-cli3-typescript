@@ -47,36 +47,19 @@ import Detail from './Detail.vue';
   },
 })
 export default class GoodsContent extends Vue {
-  @Prop() public scrollTop!: number;
-  private tabIndex: number = 0;
-  private offset: Array<number> = [];
-  private opacity: string = '';
-  private opacityMenu: string = 'opacity: 0; display: none';
-
-  private tabChecked(tab: number) {
-    if (this.offset.length > 0) {
-      let top = this.offset[tab];
-      if (top !== 0) {
-        top ++;
-      }
-      this.$parent.$el.scrollTop = top;
-    }
-    this.tabIndex = tab;
-  }
-  private back() {
-    this.$router.back();
-  }
-  private share() {
-    console.log('share: ', this.$route.query.gid);
-  }
   get load() {
     return this.$store.state.goodsDetail.comments.length > 0;
   }
+  @Prop() public scrollTop!: number;
+  private tabIndex: number = 0;
+  private offset: number[] = [];
+  private opacity: string = '';
+  private opacityMenu: string = 'opacity: 0; display: none';
   @Watch('scrollTop')
   public changeScroll() {
-    let top = this.scrollTop > 250 ? 250 : this.scrollTop;
+    const top = this.scrollTop > 250 ? 250 : this.scrollTop;
     let opacity = (top / 250).toFixed(2);
-    let bg = 'rgba(255, 255, 255, ' + opacity + ')';
+    const bg = 'rgba(255, 255, 255, ' + opacity + ')';
     if (this.load && this.offset.length === 0) {
       this.offset.push(0);
       setTimeout(() => {
@@ -98,6 +81,23 @@ export default class GoodsContent extends Vue {
       opacity = '0; display: none';
     }
     this.opacityMenu = 'opacity: ' + opacity;
+  }
+
+  private tabChecked(tab: number) {
+    if (this.offset.length > 0) {
+      let top = this.offset[tab];
+      if (top !== 0) {
+        top ++;
+      }
+      this.$parent.$el.scrollTop = top;
+    }
+    this.tabIndex = tab;
+  }
+  private back() {
+    this.$router.back();
+  }
+  private share() {
+    console.log('share: ', this.$route.query.gid);
   }
 }
 </script>
