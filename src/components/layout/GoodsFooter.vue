@@ -62,5 +62,11 @@ export default class GoodsFooter extends Vue {
     background-color: #ff5a0c;
     color: #fff;
   }
+  .left{
+    span{
+      height: 21px;
+      border-top: 1px solid #f3f3f3;
+    }
+  }
 }
 </style>

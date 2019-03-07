@@ -1,6 +1,6 @@
 <template>
   <div class="home-page">
-    <SearchHeader />
+    <SearchHeader :title="title" />
     <Content />
     <Footer />
   </div>
@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import SearchHeader from '@/components/layout/SearchHeader.vue';
+import SearchHeader from '@/components/layout/TextHeader.vue';
 import Content from '@/components/search/Index.vue';
 import Footer from '@/components/layout/Footer.vue';
 
@@ -20,6 +20,9 @@ import Footer from '@/components/layout/Footer.vue';
   },
 })
 export default class Search extends Vue {
+  get title() {
+    return '搜索: ' + this.$store.state.searchKeywords;
+  }
   public beforeMount() {
     if (!this.$route.query.keywords) {
       this.$router.replace('/');
