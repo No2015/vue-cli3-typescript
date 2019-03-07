@@ -33,18 +33,18 @@ export default class Comments extends Vue {
     if (time.length === 10) {
       time = time + '000';
     }
-    let date = new Date(time * 1);
-    let year = date.getFullYear();
-    let month = date.getMonth() + 1;
-    let day = date.getDate();
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    let seconds = date.getSeconds();
-    return year + '-' + this.formatStr(month) + '-' + this.formatStr(day) + ' ' + this.formatStr(hours) + ':' + this.formatStr(minutes) + ':' + this.formatStr(seconds);
+    const date = new Date(time * 1);
+    const year = date.getFullYear();
+    const month = this.formatStr(date.getMonth() + 1);
+    const day = this.formatStr(date.getDate());
+    const hours = this.formatStr(date.getHours());
+    const minutes = this.formatStr(date.getMinutes());
+    const seconds = this.formatStr(date.getSeconds());
+    return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
   }
   private formatStr(num: number) {
-    let str = '00' + num;
-    return str.substr(str.length-2, 2);
+    const str = '00' + num;
+    return str.substr(str.length - 2, 2);
   }
   get comments() {
     return this.$store.state.goodsDetail.comments;

@@ -32,10 +32,10 @@ import Comments from './Comments.vue';
     Detail,
     Params,
     Comments,
-  }
+  },
 })
 export default class GoodsDetail extends Vue {
-  @Prop() scrollTop!: number;
+  @Prop() public scrollTop!: number;
   private tabIndex: number = 0;
   private tabTop: boolean = false;
 
@@ -48,10 +48,10 @@ export default class GoodsDetail extends Vue {
 
   @Watch('scrollTop')
   private changeTop() {
-    let top = this.$refs.tabCont.offsetTop;
+    const top = this.$refs.tabCont.offsetTop;
     if (!this.tabTop && this.scrollTop > top - 36) {
       this.tabTop = !this.tabTop;
-    }else if(this.tabTop && this.scrollTop < top) {
+    } else if (this.tabTop && this.scrollTop < top) {
       this.tabTop = !this.tabTop;
     }
   }

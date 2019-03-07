@@ -24,6 +24,9 @@ import { Component, Vue } from 'vue-property-decorator';
 @Component
 export default class GoodsFooter extends Vue {
   private gid: string | string[] = '';
+  public created() {
+    this.gid = this.$route.query.gid;
+  }
   private buy() {
     console.log('buy: ', this.gid);
   }
@@ -32,9 +35,6 @@ export default class GoodsFooter extends Vue {
   }
   private cart() {
     console.log('cart: ', this.gid);
-  }
-  public created() {
-    this.gid = this.$route.query.gid;
   }
 }
 </script>
