@@ -4,10 +4,10 @@
       <li>
         <ul class="flex-box left">
           <li>
-            <span @click="fav" class="shoucang"></span>
+            <span @click="fav" class="icon-shoucang"></span>
           </li>
           <li>
-            <span @click="cart" class="gouwuche"></span>
+            <span @click="cart" class="icon-gouwuche"></span>
           </li>
         </ul>
       </li>
@@ -54,7 +54,7 @@ export default class GoodsFooter extends Vue {
     padding: 10px 0;
     cursor: pointer;
     display: block;
-    &.gouwuche{
+    &.icon-gouwuche{
       border-left: 1px solid #f3f3f3;
     }
   }

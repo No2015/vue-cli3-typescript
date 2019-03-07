@@ -1,5 +1,8 @@
 <template>
-  <div id="tab-detail">
+  <div id="detail">
+    <div class="title-head">
+      <span>详情</span>
+    </div>
     <div class="detail-img">
       <img v-for="(item, index) in imgs" :key="index" :src="item" alt="">
     </div>
@@ -18,8 +21,19 @@ export default class Detail extends Vue {
 </script>
 
 <style lang="less" scoped>
+.title-head{
+  height: 16px;
+  font-size: 14px;
+  line-height: 18px;
+  padding: 10px;
+  span{
+    display: block;
+    height: 16px;
+    border-left: 2px solid #ff5a0c;
+    padding-left: 5px;
+  }
+}
 .detail-img{
-  padding: 10px 0;
   img{
     width: 100%;
   }

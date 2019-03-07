@@ -1,5 +1,8 @@
 <template>
   <div id="tab-params">
+    <div class="title-head">
+      <span>参数</span>
+    </div>
     <ul class="flex-box align-top" v-for="(item, index) in params" :key="index">
       <li class="params-name pad5-10">
         <span>{{ item.name }}:</span>
@@ -27,7 +30,18 @@ export default class Params extends Vue {
 
 <style lang="less" scoped>
 #tab-params{
-  padding: 10px 0;
+  .title-head{
+    height: 16px;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 10px;
+    span{
+      display: block;
+      height: 16px;
+      border-left: 2px solid #ff5a0c;
+      padding-left: 5px;
+    }
+  }
   .params-name{
     color: #999;
     font-size: 12px;

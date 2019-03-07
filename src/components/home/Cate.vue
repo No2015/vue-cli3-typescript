@@ -1,15 +1,15 @@
 <template>
   <div class="category">
     <div class="cate-head">
-        <span>热销分类</span>
+      <span>热销分类</span>
+    </div>
+    <div class="cate clearfix">
+      <div class="cate-item pull-left tc" v-for="(item, index) in cate" :key="index" @click="toCate(item.id)">
+        <img :src="item.img" :alt="item.title">
+        <p class="price">￥{{ item.price }}</p>
+        <p class="title">{{ item.title }}</p>
       </div>
-      <div class="cate clearfix">
-        <div class="cate-item pull-left tc" v-for="(item, index) in cate" :key="index" @click="toCate(item.id)">
-          <img :src="item.img" :alt="item.title">
-          <p class="price">￥{{ item.price }}</p>
-          <p class="title">{{ item.title }}</p>
-        </div>
-      </div>
+    </div>
   </div>
 </template>
 

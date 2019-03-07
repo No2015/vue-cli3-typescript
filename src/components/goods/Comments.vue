@@ -1,5 +1,8 @@
 <template>
-  <div id="tab-comments">
+  <div id="comments">
+    <div class="title-head">
+      <span>评论(<em>{{ count }}</em>)</span>
+    </div>
     <div v-for="(item, index) in comments" :key="index" class="item">
       <div class="item-head cearfix">
         <div class="pull-left avatar">
@@ -46,6 +49,9 @@ export default class Comments extends Vue {
     const str = '00' + num;
     return str.substr(str.length - 2, 2);
   }
+  get count() {
+    return this.$store.state.goodsDetail.comments.length;
+  }
   get comments() {
     return this.$store.state.goodsDetail.comments;
   }
@@ -53,8 +59,20 @@ export default class Comments extends Vue {
 </script>
 
 <style lang="less" scoped>
-#tab-comments{
+#comments{
   padding: 10px 0;
+  .title-head{
+    height: 16px;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 10px;
+    span{
+      display: block;
+      height: 16px;
+      border-left: 2px solid #ff5a0c;
+      padding-left: 5px;
+    }
+  }
   .item{
     padding: 0 10px 10px;
     .item-head{
@@ -98,6 +116,10 @@ export default class Comments extends Vue {
   }
   .no-data{
     color: #999;
+  }
+  .title-head em{
+    color: #ff5a0c;
+    font-size: 12px;
   }
 }
 </style>
