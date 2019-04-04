@@ -6,11 +6,17 @@
           <em :class="(checkAll ? 'icon-checked ': '') + 'icon-check'"></em><em class="icon-check-txt">全选</em>
         </span>
       </li>
-      <li class="flex-item-2 left tr">
+      <li v-show="!showDelete" class="flex-item-2 left tr">
         <span class="padr10">总额：<em>{{ amount }}</em></span>
       </li>
-      <li>
+      <li v-show="!showDelete">
         <span class="buy tc" @click="trade">结算</span>
+      </li>
+      <li v-show="showDelete" class="flex-item-3 left tr">
+        <span class="padr10">
+          <em class="bjs-btn bjs-btn-default" @click="deleteAll">清空</em>
+          <em class="bjs-btn bjs-btn-default marl10" @click="deleteChecked">删除</em>
+        </span>
       </li>
     </ul>
   </div>
@@ -35,12 +41,28 @@ export default class GoodsFooter extends Vue {
     for (const item of list) {
       item.add = this.checkAll;
     }
+    if (list.length === 0) {
+      this.checkAll = !1;
+    }
     this.$store.commit('setCartList', list);
+  }
+  private deleteAll() {
+    this.$store.commit('setCartList', []);
+  }
+  private deleteChecked() {
+    const list = this.$store.state.cart.list;
+    const lists = list.filter(elem => {
+      return !elem.add
+    });
+    this.$store.commit('setCartList', lists);
+  }
+  get showDelete() {
+    return this.$store.state.cart.manageState;
   }
   get amount() {
     const list = this.$store.state.cart.list;
     let amount = 0;
-    let state = !0;
+    let state = list.length > 0 ? !0 : !1;
     for (const item of list) {
       if (item.add) {
         amount += item.price * item.num;
@@ -73,7 +95,8 @@ export default class GoodsFooter extends Vue {
     height: 22px;
     line-height: 24px;
     font-size: 16px;
-    padding: 10px 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
     cursor: pointer;
     display: block;
     &.icon-gouwuche{
@@ -89,12 +112,6 @@ export default class GoodsFooter extends Vue {
       height: 21px;
       border-top: 1px solid #f3f3f3;
     }
-  }
-  .padl10{
-    padding-left: 10px;
-  }
-  .padr10{
-    padding-right: 10px;
   }
   .icon-check-txt{
     font-size: 14px;
