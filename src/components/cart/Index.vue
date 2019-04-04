@@ -5,7 +5,7 @@
         <div class="item-title">
           <ul class="cate-head flex-box">
             <li class="check-left">
-              <span :class="'icon-check'" @click="checkCate(cate)"></span>
+              <span :class="(checkAllCate(cate) ? 'icon-checked ': '') + 'icon-check'" @click="checkCate(cate)"></span>
             </li>
             <li class="check-right">
               <span class="cate-title">{{ cate[0].ctitle }}</span>
@@ -16,7 +16,7 @@
           <div class="solt"></div>
           <ul class="flex-box">
             <li class="check-left">
-              <span :class="'icon-check'" @click="checkIndex(item, index)"></span>
+              <span :class="(item.add ? 'icon-checked ': '') + 'icon-check'" @click="checkIndex(item.id)"></span>
             </li>
             <li class="check-right">
               <div class="solt"></div>
@@ -47,7 +47,7 @@ import { Component, Vue } from 'vue-property-decorator';
 @Component
 export default class CartIndex extends Vue {
   get cart() {
-    const list = this.$store.state.cartList;
+    const list = this.$store.state.cart.list;
     const cart = {};
     for (const item of list) {
       const cate = item.cate;
@@ -64,10 +64,32 @@ export default class CartIndex extends Vue {
     this.$router.push({ path: 'goods', query: { gid } });
   }
   private checkCate(cate: any) {
-    console.log(cate);
+    const list = this.$store.state.cart.list;
+    for (const item of list) {
+      for (const items of cate) {
+        if (item.id === items.id) {
+          item.add = !item.add;
+        }
+      }
+    }
   }
-  private checkIndex(item: any, index: number) {
-    console.log(item, index);
+  private checkIndex(id: number) {
+    const list = this.$store.state.cart.list;
+    for (const item of list) {
+      if (item.id === id) {
+        item.add = !item.add;
+      }
+    }
+    this.$store.commit('setCartList', list);
+  }
+  private checkAllCate(cate: any) {
+    let state = !0;
+    for (const items of cate) {
+      if (!items.add) {
+        state = !1;
+      }
+    }
+    return state;
   }
 }
 </script>

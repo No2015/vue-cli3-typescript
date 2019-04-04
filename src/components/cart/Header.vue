@@ -20,16 +20,17 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 @Component
 export default class Header extends Vue {
   @Prop() private title!: string;
-  private managetxt:string = '管理';
-  private manageState:boolean = false;
+  private managetxt: string = '管理';
   private manage() {
-    if (this.manageState) {
-      this.manageState = false;
-      this.managetxt = '管理'
+    let manageState = this.$store.state.cart.manageState;
+    if (manageState) {
+      manageState = !1;
+      this.managetxt = '管理';
     } else {
-      this.manageState = true;
-      this.managetxt = '取消'
-    }    
+      manageState = !0;
+      this.managetxt = '取消';
+    }
+    this.$store.commit('setCartManageState', manageState);
   }
   private back() {
     this.$router.back();

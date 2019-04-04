@@ -14,7 +14,6 @@ export default new Vuex.Store({
     cateList: [],
     cateTitle: '',
     pageLoad: !0,
-    cartList: [],
     goodsDetail,
     userInfo,
     cart,
@@ -38,10 +37,13 @@ export default new Vuex.Store({
       state.homeBanner = list;
     },
     setCartList(state, list) {
-      state.cartList = list;
+      state.cart.list = list;
     },
-    setCart(state, cart) {
-      state.cart = cart;
+    setCartAmount(state, amount) {
+      state.cart.amount = amount;
+    },
+    setCartManageState(state, manageState) {
+      state.cart.manageState = manageState;
     },
     setHomeCate(state, list) {
       state.homeCate = list;
@@ -80,7 +82,11 @@ export default new Vuex.Store({
     },
     initCartPage(context) {
       axios.get('/api/cart.json', {}).then((response: any) => {
-        context.commit('setCartList', response.data);
+        const data = response.data;
+        for (const item of data) {
+          item.add = !1;
+        }
+        context.commit('setCartList', data);
       });
       context.commit('setPageLoad', !1);
     },

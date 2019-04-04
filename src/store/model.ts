@@ -20,6 +20,7 @@ export const goodsDetail = {
     imgs: [],
 };
 export const cart = {
-    status: !1,
+    manageState: !1,
     amount: 0,
+    list: [],
 };

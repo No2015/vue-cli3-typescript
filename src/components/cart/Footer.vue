@@ -1,13 +1,16 @@
 <template>
   <div id="footer">
     <ul class="flex-box">
-      <li>
-        <div class="left tc">
-          <span>总额：<em>{{ amount }}</em></span>
-        </div>
+      <li class="left tl">
+        <span class="padl10" @click="addAll">
+          <em :class="(checkAll ? 'icon-checked ': '') + 'icon-check'"></em><em class="icon-check-txt">全选</em>
+        </span>
+      </li>
+      <li class="flex-item-2 left tr">
+        <span class="padr10">总额：<em>{{ amount }}</em></span>
       </li>
       <li>
-        <span class="buy tc" @click="trade">去支付</span>
+        <span class="buy tc" @click="trade">结算</span>
       </li>
     </ul>
   </div>
@@ -19,16 +22,41 @@ import { Component, Vue } from 'vue-property-decorator';
 @Component
 export default class GoodsFooter extends Vue {
   private gid: string | string[] = '';
+  private checkAll: boolean = !1;
   public created() {
-    this.gid = this.$route.query.gid;
+    // this.gid = this.$route.query.gid;
   }
   private trade() {
-    console.log('trade: ', this.gid);
+    console.log('trade: ', this.$store.state.cart.amount);
+  }
+  private addAll() {
+    const list = this.$store.state.cart.list;
+    this.checkAll = !this.checkAll;
+    for (const item of list) {
+      item.add = this.checkAll;
+    }
+    this.$store.commit('setCartList', list);
   }
   get amount() {
-    let amount = this.$store.state.cart.amount;
-    amount = amount.toFixed(2);
-    return amount;
+    const list = this.$store.state.cart.list;
+    let amount = 0;
+    let state = !0;
+    for (const item of list) {
+      if (item.add) {
+        amount += item.price * item.num;
+      }
+      if (!item.add) {
+        state = !1;
+      }
+    }
+    this.$store.commit('setCartAmount', amount);
+    if (amount === 0) {
+      this.checkAll = !1;
+    }
+    if (state) {
+      this.checkAll = !0;
+    }
+    return amount.toFixed(2);
   }
 }
 </script>
@@ -61,6 +89,24 @@ export default class GoodsFooter extends Vue {
       height: 21px;
       border-top: 1px solid #f3f3f3;
     }
+  }
+  .padl10{
+    padding-left: 10px;
+  }
+  .padr10{
+    padding-right: 10px;
+  }
+  .icon-check-txt{
+    font-size: 14px;
+    display: inline-block;
+    line-height: 23px;
+    vertical-align: top;
+    padding-left: 3px;
+  }
+  .icon-check{
+    display: inline-block;
+    height: 21px;
+    width: 21px;
   }
 }
 </style>
