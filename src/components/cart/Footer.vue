@@ -51,8 +51,8 @@ export default class GoodsFooter extends Vue {
   }
   private deleteChecked() {
     const list = this.$store.state.cart.list;
-    const lists = list.filter(elem => {
-      return !elem.add
+    const lists = list.filter((elem) => {
+      return !elem.add;
     });
     this.$store.commit('setCartList', lists);
   }
