@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from '@/global/axios';
-import { userInfo, goodsDetail } from '@/store/model';
+import { userInfo, goodsDetail, cart } from '@/store/model';
 
 Vue.use(Vuex);
 export default new Vuex.Store({
@@ -17,6 +17,7 @@ export default new Vuex.Store({
     cartList: [],
     goodsDetail,
     userInfo,
+    cart,
   },
   mutations: {
     setSearchKeywords(state, keywords) {
@@ -38,6 +39,9 @@ export default new Vuex.Store({
     },
     setCartList(state, list) {
       state.cartList = list;
+    },
+    setCart(state, cart) {
+      state.cart = cart;
     },
     setHomeCate(state, list) {
       state.homeCate = list;

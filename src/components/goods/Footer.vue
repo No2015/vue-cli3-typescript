@@ -49,7 +49,7 @@ export default class GoodsFooter extends Vue {
   height: 42px;
   span{
     height: 22px;
-    line-height: 22px;
+    line-height: 24px;
     font-size: 16px;
     padding: 10px 0;
     cursor: pointer;

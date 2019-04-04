@@ -19,3 +19,7 @@ export const goodsDetail = {
     comments: [],
     imgs: [],
 };
+export const cart = {
+    status: !1,
+    amount: 0,
+};

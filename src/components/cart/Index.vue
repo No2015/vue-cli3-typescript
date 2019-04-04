@@ -48,14 +48,14 @@ import { Component, Vue } from 'vue-property-decorator';
 export default class CartIndex extends Vue {
   get cart() {
     const list = this.$store.state.cartList;
-    let cart = {};
-    for(let i = 0; i < list.length; i++) {
-      let cate = list[i].cate;
+    const cart = {};
+    for (const item of list) {
+      const cate = item.cate;
       if (cart[cate]) {
-        cart[cate].push(list[i]);
-      }else{
+        cart[cate].push(item);
+      } else {
         cart[cate] = [];
-        cart[cate].push(list[i]);
+        cart[cate].push(item);
       }
     }
     return cart;

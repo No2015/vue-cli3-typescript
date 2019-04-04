@@ -8,9 +8,9 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import Header from '@/components/layout/TextHeader.vue';
+import Header from '@/components/cart/Header.vue';
 import Content from '@/components/cart/Index.vue';
-import Footer from '@/components/layout/Footer.vue';
+import Footer from '@/components/cart/Footer.vue';
 
 @Component({
   components: {

@@ -8,7 +8,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import Content from '@/components/goods/Index.vue'; // @ is an alias to /src
-import Footer from '@/components/layout/GoodsFooter.vue'; // @ is an alias to /src
+import Footer from '@/components/goods/Footer.vue'; // @ is an alias to /src
 
 @Component({
   components: {
