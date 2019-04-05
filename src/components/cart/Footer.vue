@@ -74,6 +74,9 @@ export default class GoodsFooter extends Vue {
       }
       return !item.add;
     });
+    if (arr.length === 0) {
+      return !1;
+    }
     this.update(arr);
     this.$store.commit('setCartList', lists);
   }
