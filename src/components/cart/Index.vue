@@ -31,11 +31,11 @@
                   <p class="price">￥{{ item.price }}</p>
                   <ul class="flex-box num-box">
                     <li>
-                      <span class="bjs-btn btn-subtract bjs-btn-full tc font5" @click="item.num = item.num > 1 ? item.num - 1 : item.num; update(item.num, item.id)">-</span>
+                      <span class="bjs-btn btn-subtract bjs-btn-full tc font5" @click="item.num = item.num > 1 ? (update(item.num - 1, item.id),item.num - 1) : item.num">-</span>
                     </li>
                     <li class="flex-item-3 marl10"><input class="bjs-btn bjs-btn-full tc num" type="text" v-model="item.num" @blur="item.num = item.num * 1 < 1 ? 1 : item.num * 1; update(item.num, item.id)" @input="item.num = (item.num + '').replace(/[^\d]*/g,'')"></li>
                     <li class="marl10">
-                      <span class="bjs-btn btn-add bjs-btn-full tc font5" @click="item.num = item.num < 10000 ? item.num + 1 : item.num; update(item.num, item.id)">+</span>
+                      <span class="bjs-btn btn-add bjs-btn-full tc font5" @click="item.num = item.num < 10000 ? (update(item.num + 1, item.id),item.num + 1) : item.num">+</span>
                     </li>
                   </ul>
                 </li>

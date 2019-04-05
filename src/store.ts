@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from '@/global/axios';
-import { userInfo, goodsDetail, cart } from '@/store/model';
+import { userInfo, goodsDetail, cart, center } from '@/store/model';
 
 Vue.use(Vuex);
 export default new Vuex.Store({
@@ -17,6 +17,7 @@ export default new Vuex.Store({
     goodsDetail,
     userInfo,
     cart,
+    center,
   },
   mutations: {
     setSearchKeywords(state, keywords) {
@@ -56,6 +57,9 @@ export default new Vuex.Store({
     },
     setGoodsDetail(state, detail) {
       state.goodsDetail = detail;
+    },
+    setCenterOrder(state, order) {
+      state.center.order = order;
     },
     setUser(state, info) {
       state.userInfo = info;
@@ -123,6 +127,12 @@ export default new Vuex.Store({
     initGoodsDetail(context, gid) {
       axios.get('/api/goodsdetail.json', { params: { gid } }).then((response: any) => {
         context.commit('setGoodsDetail', response.data);
+      });
+      context.commit('setPageLoad', !1);
+    },
+    initCenterPage(context) {
+      axios.get('/api/centerOrder.json', {}).then((response: any) => {
+        context.commit('setCenterOrder', response.data);
       });
       context.commit('setPageLoad', !1);
     },

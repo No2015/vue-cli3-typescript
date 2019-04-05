@@ -24,3 +24,11 @@ export const cart = {
     amount: 0,
     list: [],
 };
+export const center = {
+    order: {
+        s0: 0,
+        s1: 0,
+        s2: 0,
+        s3: 0,
+    },
+};
