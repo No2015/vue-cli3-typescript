@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from '@/global/axios';
 import { userInfo, goodsDetail, cart, center } from '@/store/model';
+import { API } from '@/global/api';
 
 Vue.use(Vuex);
 export default new Vuex.Store({
@@ -68,17 +69,17 @@ export default new Vuex.Store({
   actions: {
     initHomePage(context) {
       if (context.state.homeList.length === 0) {
-        axios.get('/api/goodslist.json', {}).then((response: any) => {
+        axios.get(API.goodsList, {}).then((response: any) => {
           context.commit('setHomeList', response.data);
         });
       }
       if (context.state.homeCate.length === 0) {
-        axios.get('/api/cate.json', {}).then((response: any) => {
+        axios.get(API.cate, {}).then((response: any) => {
           context.commit('setHomeCate', response.data);
         });
       }
       if (context.state.homeBanner.length === 0) {
-        axios.get('/api/banner.json', {}).then((response: any) => {
+        axios.get(API.banner, {}).then((response: any) => {
           context.commit('setHomeBanner', response.data);
         });
       }
@@ -86,7 +87,7 @@ export default new Vuex.Store({
     },
     initCartPage(context, reset) {
       if (context.state.cart.list.length === 0 || reset) {
-        axios.get('/api/cart.json', {}).then((response: any) => {
+        axios.get(API.cart, {}).then((response: any) => {
           const data = response.data;
           for (const item of data) {
             item.add = !1;
@@ -99,7 +100,7 @@ export default new Vuex.Store({
     updateCartPage(context, updata) {
       const update = updata.update;
       const list = updata.list;
-      axios.post('/api/updateCart.json', { update }).then((response: any) => {
+      axios.post(API.updateCart, { update }).then((response: any) => {
         const data = response.data;
         if (data.status && list) {
           context.commit('setCartList', list);
@@ -110,7 +111,7 @@ export default new Vuex.Store({
     },
     initSearchPage(context, keywords) {
       if (keywords !== context.state.searchKeywords) {
-        axios.get('/api/search.json', { params: { keywords } }).then((response: any) => {
+        axios.get(API.search, { params: { keywords } }).then((response: any) => {
           context.commit('setSearchList', response.data);
         });
         context.commit('setSearchKeywords', keywords);
@@ -118,20 +119,20 @@ export default new Vuex.Store({
       context.commit('setPageLoad', !1);
     },
     initCatePage(context, cid) {
-      axios.get('/api/catePage.json', { params: { cid } }).then((response: any) => {
+      axios.get(API.catePage, { params: { cid } }).then((response: any) => {
         context.commit('setCateList', response.data.data);
         context.commit('setCateTitle', response.data.title);
       });
       context.commit('setPageLoad', !1);
     },
     initGoodsDetail(context, gid) {
-      axios.get('/api/goodsdetail.json', { params: { gid } }).then((response: any) => {
+      axios.get(API.goodsDetail, { params: { gid } }).then((response: any) => {
         context.commit('setGoodsDetail', response.data);
       });
       context.commit('setPageLoad', !1);
     },
     initCenterPage(context) {
-      axios.get('/api/centerOrder.json', {}).then((response: any) => {
+      axios.get(API.centerOrder, {}).then((response: any) => {
         context.commit('setCenterOrder', response.data);
       });
       context.commit('setPageLoad', !1);
@@ -140,7 +141,7 @@ export default new Vuex.Store({
       if (context.state.userInfo.id !== 0) {
         return !1;
       }
-      axios.get('/api/user.json', {}).then((response: any) => {
+      axios.get(API.user, {}).then((response: any) => {
         context.commit('setUser', response.data);
       });
     },

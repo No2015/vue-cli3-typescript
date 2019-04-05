@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "price": "99",
+        "title": "羽毛球拍",
+        "img": "/static/img/cate/1.jpg"
+    },
+    {
+        "id": 2,
+        "price": "55",
+        "title": "李宁足球",
+        "img": "/static/img/cate/2.jpg"
+    },
+    {
+        "id": 3,
+        "price": "85",
+        "title": "川崎短裤",
+        "img": "/static/img/cate/3.jpg"
+    },
+    {
+        "id": 4,
+        "price": "42",
+        "title": "李宁泳包",
+        "img": "/static/img/cate/4.jpg"
+    },
+    {
+        "id": 5,
+        "price": "149",
+        "title": "探路者鞋",
+        "img": "/static/img/cate/5.jpg"
+    },
+    {
+        "id": 6,
+        "price": "150",
+        "title": "真包李宁",
+        "img": "/static/img/cate/6.jpg"
+    },
+    {
+        "id": 7,
+        "price": "138",
+        "title": "碳素鱼竿",
+        "img": "/static/img/cate/7.jpg"
+    },
+    {
+        "id": 8,
+        "price": "139",
+        "title": "羽毛球包",
+        "img": "/static/img/cate/8.jpg"
+    }
+]
