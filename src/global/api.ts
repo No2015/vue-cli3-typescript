@@ -1,13 +1,16 @@
+const base = process.env.NODE_ENV === 'production'
+? '/vue-ts/static/api/'
+: '/static/api/';
 export const API = {
-    banner: '/static/api/banner.json',
-    cart: '/static/api/cart.json',
-    cate: '/static/api/cate.json',
-    catePage: '/static/api/catePage.json',
-    centerOrder: '/static/api/centerOrder.json',
-    goodsDetail: '/static/api/goodsDetail.json',
-    goodsList: '/static/api/goodsList.json',
-    order: '/static/api/order.json',
-    search: '/static/api/search.json',
-    updateCart: '/static/api/updateCart.json',
-    user: '/static/api/user.json',
+    banner: base + 'banner.json',
+    cart: base + 'cart.json',
+    cate: base + 'cate.json',
+    catePage: base + 'catePage.json',
+    centerOrder: base + 'centerOrder.json',
+    goodsDetail: base + 'goodsDetail.json',
+    goodsList: base + 'goodsList.json',
+    order: base + 'order.json',
+    search: base + 'search.json',
+    updateCart: base + 'updateCart.json',
+    user: base + 'user.json',
 };
