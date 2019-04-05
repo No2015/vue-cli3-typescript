@@ -80,15 +80,29 @@ export default new Vuex.Store({
       }
       context.commit('setPageLoad', !1);
     },
-    initCartPage(context) {
-      axios.get('/api/cart.json', {}).then((response: any) => {
-        const data = response.data;
-        for (const item of data) {
-          item.add = !1;
-        }
-        context.commit('setCartList', data);
-      });
+    initCartPage(context, reset) {
+      if (context.state.cart.list.length === 0 || reset) {
+        axios.get('/api/cart.json', {}).then((response: any) => {
+          const data = response.data;
+          for (const item of data) {
+            item.add = !1;
+          }
+          context.commit('setCartList', data);
+        });
+      }
       context.commit('setPageLoad', !1);
+    },
+    updateCartPage(context, updata) {
+      const update = updata.update;
+      const list = updata.list;
+      axios.post('/api/updateCart.json', { update }).then((response: any) => {
+        const data = response.data;
+        if (data.status && list) {
+          context.commit('setCartList', list);
+        } else if (!data.status) {
+          context.dispatch('initCartPage', true);
+        }
+      });
     },
     initSearchPage(context, keywords) {
       if (keywords !== context.state.searchKeywords) {

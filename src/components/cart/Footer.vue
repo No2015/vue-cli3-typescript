@@ -62,8 +62,7 @@ export default class GoodsFooter extends Vue {
     for (const item of list) {
       arr.push(item.id);
     }
-    this.update(arr);
-    this.$store.commit('setCartList', []);
+    this.update(arr, []);
   }
   private deleteChecked() {
     const list = this.$store.state.cart.list;
@@ -77,8 +76,7 @@ export default class GoodsFooter extends Vue {
     if (arr.length === 0) {
       return !1;
     }
-    this.update(arr);
-    this.$store.commit('setCartList', lists);
+    this.update(arr, lists);
   }
   get showDelete() {
     return this.$store.state.cart.manageState;
@@ -102,9 +100,8 @@ export default class GoodsFooter extends Vue {
     this.$store.commit('setCartAmount', amount);
     return amount.toFixed(2);
   }
-  private update(arr: number[]) {
-    console.log('delete arr: ', arr);
-    // update to cart ...
+  private update(arr: number[], lists: any[]) {
+    this.$store.dispatch('updateCartPage', {update: arr, list: lists});
   }
 }
 </script>

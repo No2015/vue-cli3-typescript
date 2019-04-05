@@ -100,8 +100,7 @@ export default class CartIndex extends Vue {
     return state;
   }
   private update(num: number, id: number) {
-    console.log(num, id);
-    // update to cart ...
+    this.$store.dispatch('updateCartPage', {update: {id, num}});
   }
 }
 </script>
