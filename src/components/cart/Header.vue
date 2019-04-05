@@ -28,7 +28,7 @@ export default class Header extends Vue {
       this.managetxt = '管理';
     } else {
       manageState = !0;
-      this.managetxt = '取消';
+      this.managetxt = '完成';
     }
     this.$store.commit('setCartManageState', manageState);
   }

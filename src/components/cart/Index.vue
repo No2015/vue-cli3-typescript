@@ -29,7 +29,15 @@
                 <li class="item-right">
                   <p class="title hand" @click="toUrl(item.id)">{{ item.title }}</p>
                   <p class="price">￥{{ item.price }}</p>
-                  <p class="num">{{ item.num }}</p>
+                  <ul class="flex-box num-box">
+                    <li>
+                      <span class="bjs-btn btn-subtract bjs-btn-full tc font5" @click="item.num = item.num > 1 ? item.num - 1 : item.num; update(item.num, item.id)">-</span>
+                    </li>
+                    <li class="flex-item-3 marl10"><input class="bjs-btn bjs-btn-full tc num" type="text" v-model="item.num" @blur="item.num = item.num * 1 < 1 ? 1 : item.num * 1; update(item.num, item.id)" @input="item.num = (item.num + '').replace(/[^\d]*/g,'')"></li>
+                    <li class="marl10">
+                      <span class="bjs-btn btn-add bjs-btn-full tc font5" @click="item.num = item.num < 10000 ? item.num + 1 : item.num; update(item.num, item.id)">+</span>
+                    </li>
+                  </ul>
                 </li>
               </ul>
               <div class="solt"></div>
@@ -91,6 +99,10 @@ export default class CartIndex extends Vue {
     }
     return state;
   }
+  private update(num: number, id: number) {
+    console.log(num, id);
+    // update to cart ...
+  }
 }
 </script>
 
@@ -123,19 +135,37 @@ export default class CartIndex extends Vue {
         padding: 10px 0;
         border-bottom: 1px solid #f3f3f3;
         .item-left{
-          width: 80px;
-          height: 80px;
+          width: 90px;
+          height: 90px;
           img{
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
           }
         }
         .item-right{
-          width: calc(100% - 90px);
-          height: 80px;
+          width: calc(100% - 100px);
+          height: 90px;
           padding-left: 10px;
           .title{
             word-wrap: break-word;
+            height: 38px;
+            overflow: hidden;
+          }
+          .price{
+            padding-top: 5px;
+          }
+          .num-box{
+            padding-top: 3px;
+            width: 60%;
+            .num{
+              box-shadow: none;
+            }
+            .num,
+            .btn-subtract,
+            .btn-add{
+              color: #666;
+              border: 1px solid #ddd;
+            }
           }
         }
       }

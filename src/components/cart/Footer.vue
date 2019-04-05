@@ -33,7 +33,17 @@ export default class GoodsFooter extends Vue {
     // this.gid = this.$route.query.gid;
   }
   private trade() {
-    console.log('trade: ', this.$store.state.cart.amount);
+    const list = this.$store.state.cart.list;
+    const data: any[] = [];
+    for (const item of list) {
+      if (item.add) {
+        data.push({
+          id: item.id,
+          num: item.num,
+        });
+      }
+    }
+    console.log('trade: ', this.$store.state.cart.amount, data);
   }
   private addAll() {
     const list = this.$store.state.cart.list;
@@ -47,13 +57,24 @@ export default class GoodsFooter extends Vue {
     this.$store.commit('setCartList', list);
   }
   private deleteAll() {
+    const list = this.$store.state.cart.list;
+    const arr: number[] = [];
+    for (const item of list) {
+      arr.push(item.id);
+    }
+    this.update(arr);
     this.$store.commit('setCartList', []);
   }
   private deleteChecked() {
     const list = this.$store.state.cart.list;
-    const lists = list.filter((elem) => {
-      return !elem.add;
+    const arr: number[] = [];
+    const lists = list.filter((item) => {
+      if (item.add) {
+        arr.push(item.id);
+      }
+      return !item.add;
     });
+    this.update(arr);
     this.$store.commit('setCartList', lists);
   }
   get showDelete() {
@@ -61,6 +82,7 @@ export default class GoodsFooter extends Vue {
   }
   get amount() {
     const list = this.$store.state.cart.list;
+    this.checkAll = !1;
     let amount = 0;
     let state = list.length > 0 ? !0 : !1;
     for (const item of list) {
@@ -71,14 +93,15 @@ export default class GoodsFooter extends Vue {
         state = !1;
       }
     }
-    this.$store.commit('setCartAmount', amount);
-    if (amount === 0) {
-      this.checkAll = !1;
-    }
     if (state) {
       this.checkAll = !0;
     }
+    this.$store.commit('setCartAmount', amount);
     return amount.toFixed(2);
+  }
+  private update(arr: number[]) {
+    console.log('delete arr: ', arr);
+    // update to cart ...
   }
 }
 </script>
