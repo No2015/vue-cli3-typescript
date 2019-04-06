@@ -73,10 +73,11 @@ export default class CartIndex extends Vue {
   }
   private checkCate(cate: any) {
     const list = this.$store.state.cart.list;
+    const add = !this.checkAllCate(cate);
     for (const item of list) {
       for (const items of cate) {
         if (item.id === items.id) {
-          item.add = !item.add;
+          item.add = add;
         }
       }
     }
