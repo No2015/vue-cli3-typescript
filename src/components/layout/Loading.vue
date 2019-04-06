@@ -1,6 +1,6 @@
 <template>
   <div class="loading landing-bubbles" v-show="loading">
-    <img src="@/assets/fruits-lemon.svg" alt="" class="ld ld-bounce">
+    <img src="@/assets/img/fruits-lemon.svg" alt="" class="ld ld-bounce">
   </div>
 </template>
 
