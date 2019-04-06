@@ -1,6 +1,17 @@
 <template>
   <div id="content">
-    <div>{{ userInfo }}</div>
+    <div class="clearfix head">
+      <div class="pull-left user-info-left">
+        <img class="avatar" :src="userInfo.avatar" alt="" @click="editAvatar">
+      </div>
+      <div class="pull-right user-info-right">
+        <p class="name">{{ userInfo.name }}</p>
+        <p class="integral">会员积分: {{ userInfo.integral }}</p>
+        <p class="level">会员等级: {{ userInfo.level }}</p>
+        <span class="news icon-news" @click="showNews"></span>
+        <span class="setting icon-setting" @click="showSetting"></span>
+      </div>
+    </div>
     <CenterOrder />
   </div>
 </template>
@@ -15,6 +26,15 @@ import CenterOrder from './Order.vue';
   },
 })
 export default class CenterIndex extends Vue {
+  private showNews() {
+    console.log('news');
+  }
+  private showSetting() {
+    console.log('setting');
+  }
+  private editAvatar() {
+    console.log('avatar');
+  }
   get userInfo() {
     return this.$store.state.userInfo;
   }
@@ -30,6 +50,50 @@ export default class CenterIndex extends Vue {
   width: 100%;
   z-index: 1;
   overflow: auto;
+  .head{
+    padding: 4% 15px 18%;
+    background: #ff5a0c;
+    margin-bottom: -15%;
+    color: #fff;
+    .user-info-left{
+      width: 60px;
+      height: 60px;
+      .avatar{
+        border-radius: 50%;
+        overflow: hidden;
+        width: 60px;
+        height: 60px;
+      }
+    }
+    .user-info-right{
+      position: relative;
+      width: calc(100% - 70px);
+      height: 60px;
+      .name{
+        font-size: 18px;
+        line-height: 28px;
+      }
+      .level,
+      .integral{
+        font-size: 12px;
+        line-height: 16px;
+      }
+      .setting{
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 20px;
+        height: 20px;
+      }
+      .news{
+        position: absolute;
+        right: 30px;
+        top: 0;
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
 }
 </style>
 

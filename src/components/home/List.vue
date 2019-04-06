@@ -43,7 +43,6 @@ export default class HomeList extends Vue {
 }
 .list{
   padding: 10px;
-  border-bottom: 1px solid #f6f6f6;
   .list-item{
     width: 50%;
     padding: 10px;
