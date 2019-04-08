@@ -31,11 +31,5 @@ export default class Home extends Vue {
       $content.scrollTop = scrollTop;
     }
   }
-  public beforeRouteLeave(to: Route, from: Route, next: () => void) {
-    const $content = document.querySelector('#content');
-    const scrollTop = $content ? $content.scrollTop : 0;
-    this.$route.meta.scrollTop = scrollTop;
-    next();
-  }
 }
 </script>
