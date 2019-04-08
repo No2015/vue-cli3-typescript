@@ -12,6 +12,10 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home,
+      meta: {
+        keepAlive: true,
+        scrollTop: 0,
+      },
     },
     {
       path: '/goods',

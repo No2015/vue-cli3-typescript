@@ -20,11 +20,11 @@ import { Component, Vue } from 'vue-property-decorator';
 @Component
 export default class Footer extends Vue {
   private page: string = '';
-  private toUrl(name: string) {
-    this.$router.push({ name: name });
-  }
   public created() {
     this.page  = this.$route.name || 'home';
+  }
+  private toUrl(name: string) {
+    this.$router.push({ name });
   }
 }
 </script>
