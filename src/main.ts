@@ -16,8 +16,8 @@ Component.registerHooks([
   'beforeRouteUpdate',
 ]);
 
-router.beforeEach((to: Route, from: Route, next: () => void) => {	
-	if (from.meta.keepAlive) {
+router.beforeEach((to: Route, from: Route, next: () => void) => {
+  if (from.meta.keepAlive) {
     const $content = document.querySelector('#content');
     const scrollTop = $content ? $content.scrollTop : 0;
     from.meta.scrollTop = scrollTop;
