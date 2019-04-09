@@ -7,11 +7,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Mixins } from 'vue-property-decorator';
 import Header from '@/components/layout/Header.vue';
 import Content from '@/components/home/Index.vue';
 import Footer from '@/components/layout/Footer.vue';
 import { Route } from '_vue-router@3.0.2@vue-router';
+import MyMixin from '@/global/mixin';
 
 @Component({
   components: {
@@ -20,16 +21,9 @@ import { Route } from '_vue-router@3.0.2@vue-router';
     Footer,
   },
 })
-export default class Home extends Vue {
+export default class Home extends Mixins(MyMixin) {
   public created() {
     this.$store.dispatch('initHomePage');
-  }
-  public activated() {
-    const scrollTop = this.$route.meta.scrollTop;
-    const $content = document.querySelector('#content');
-    if (scrollTop && $content) {
-      $content.scrollTop = scrollTop;
-    }
   }
 }
 </script>

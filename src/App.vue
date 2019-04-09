@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-      <keep-alive>
-        <transition name="fade">
-          <router-view v-if="$route.meta.keepAlive"></router-view>
-        </transition>
-      </keep-alive>
       <transition name="fade">
-      <router-view v-if="!$route.meta.keepAlive"></router-view>
+        <keep-alive>
+        <router-view v-if="$route.meta.keepAlive"></router-view>
+        </keep-alive>
+      </transition>
+      <transition name="fade">
+        <router-view v-if="!$route.meta.keepAlive"></router-view>
       </transition>
       <Loading :loading="$store.state.pageLoad" />
   </div>
