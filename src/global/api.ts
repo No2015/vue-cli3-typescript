@@ -13,4 +13,5 @@ export const API = {
     search: base + 'search.json',
     updateCart: base + 'updateCart.json',
     user: base + 'user.json',
+    userAvatar: base + 'updateUserAvatar.json',
 };

@@ -2,7 +2,10 @@
   <div id="content">
     <div class="clearfix head">
       <div class="pull-left user-info-left">
-        <img class="avatar" :src="userInfo.avatar" alt="" @click="editAvatar">
+        <label for="upload" class="avatar">
+          <img :src="userInfo.avatar" alt="">
+          <input ref="upload" type="file" id="upload" class="hide" accept="image/*" @change="editAvatar" >
+        </label>
       </div>
       <div class="pull-right user-info-right">
         <p class="name">{{ userInfo.name }}</p>
@@ -26,6 +29,7 @@ import CenterOrder from './Order.vue';
   },
 })
 export default class CenterIndex extends Vue {
+  private uploadimg: string = '';
   private showNews() {
     console.log('news');
   }
@@ -33,7 +37,16 @@ export default class CenterIndex extends Vue {
     console.log('setting');
   }
   private editAvatar() {
-    console.log('avatar');
+    const file = this.$refs.upload.files[0];
+    if (file) {
+      const URL = window.URL || window.webkitURL;
+      const imageURL = URL.createObjectURL(file);
+      const upload = {
+        file,
+        url: imageURL,
+      };
+      this.$store.dispatch('updateUserAvatar', upload);
+    }
   }
   get userInfo() {
     return this.$store.state.userInfo;
@@ -58,7 +71,7 @@ export default class CenterIndex extends Vue {
     .user-info-left{
       width: 60px;
       height: 60px;
-      .avatar{
+      .avatar,.avatar img{
         border-radius: 50%;
         overflow: hidden;
         width: 60px;

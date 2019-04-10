@@ -101,12 +101,16 @@ export default new Vuex.Store({
       const update = updata.update;
       const list = updata.list;
       axios.post(API.updateCart, { update }).then((response: any) => {
+        console.log('success');
         const data = response.data;
         if (data.status && list) {
           context.commit('setCartList', list);
         } else if (!data.status) {
           context.dispatch('initCartPage', true);
         }
+      }).catch(() => {
+        console.log('error');
+        context.commit('setCartList', list);
       });
     },
     initSearchPage(context, keywords) {
@@ -143,6 +147,27 @@ export default new Vuex.Store({
       }
       axios.get(API.user, {}).then((response: any) => {
         context.commit('setUser', response.data);
+      });
+    },
+    updateUserAvatar(context, upload) {
+      const data = new FormData();
+      const config = {
+        headers: {
+           'Content-Type': 'multipart/form-data',
+        },
+      };
+      data.append('file', upload.file);
+      const newAxios = axios.create();
+      newAxios.post(API.userAvatar, data, config).then((response: any) => {
+        console.log('success');
+        const info = context.state.userInfo;
+        info.avatar = upload.url;
+        context.commit('setUser', info);
+      }).catch(() => {
+        console.log('error');
+        const info = context.state.userInfo;
+        info.avatar = upload.url;
+        context.commit('setUser', info);
       });
     },
   },
