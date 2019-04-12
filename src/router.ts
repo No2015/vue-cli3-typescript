@@ -42,5 +42,10 @@ export default new Router({
       name: 'cate',
       component: () => import('./views/Cate.vue'),
     },
+    {
+      path: '/order',
+      name: 'order',
+      component: () => import('./views/Order.vue'),
+    },
   ],
 });

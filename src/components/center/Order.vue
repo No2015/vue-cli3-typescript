@@ -34,8 +34,8 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class CenterOrder extends Vue {
-  private toOrder(status: number) {
-    console.log('order status: ', status);
+  private toOrder(status: string) {
+    this.$router.push({ path: 'order', query: { status }});
   }
   get order() {
     return this.$store.state.center.order;

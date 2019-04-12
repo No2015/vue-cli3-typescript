@@ -13,6 +13,7 @@ export default new Vuex.Store({
     searchList: [],
     searchKeywords: '',
     cateList: [],
+    orderList: [],
     cateTitle: '',
     pageLoad: !0,
     goodsDetail,
@@ -64,6 +65,9 @@ export default new Vuex.Store({
     },
     setUser(state, info) {
       state.userInfo = info;
+    },
+    setOrderList(state, orderList) {
+      state.orderList = orderList;
     },
   },
   actions: {
@@ -138,6 +142,12 @@ export default new Vuex.Store({
     initCenterPage(context) {
       axios.get(API.centerOrder, {}).then((response: any) => {
         context.commit('setCenterOrder', response.data);
+      });
+      context.commit('setPageLoad', !1);
+    },
+    initOrderPage(context, status) {
+      axios.get(API.order, { params: { status } }).then((response: any) => {
+        context.commit('setOrderList', response.data);
       });
       context.commit('setPageLoad', !1);
     },
