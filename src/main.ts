@@ -5,7 +5,7 @@ import store from './store';
 import { Component } from 'vue-property-decorator';
 import './assets/styles.less';
 import storage from './global/storage';
-import { Route } from '_vue-router@3.0.2@vue-router';
+import { Route } from 'vue-router';
 
 Vue.prototype.$storage = storage;
 Vue.config.productionTip = false;
