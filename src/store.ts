@@ -104,7 +104,7 @@ export default new Vuex.Store({
     updateCartPage(context, updata) {
       const update = updata.update;
       const list = updata.list;
-      axios.post(API.updateCart, { update }).then((response: any) => {
+      axios.get(API.updateCart, { params: update }).then((response: any) => {
         console.log('success');
         const data = response.data;
         if (data.status && list) {
