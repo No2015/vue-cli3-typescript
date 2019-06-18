@@ -2,7 +2,7 @@
   <div id="header">
     <ul class="clearfix">
       <li class="tc pull-left header-left">
-        <img :src="avatar" alt="" @click="toUser" class="avatar">
+        <img :src="$store.state.baseUrl+avatar" alt="" @click="toUser" class="avatar">
       </li>
       <li class="pull-left header-center">
         <input type="text" v-model="key" class="search-input" placeholder="商品搜索" />

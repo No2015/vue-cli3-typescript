@@ -23,7 +23,7 @@
               <ul class="flex-box">
                 <li class="item-left">
                   <span class="hand" @click="toUrl(item.id)">
-                    <img :src="item.img" :alt="item.id">
+                    <img :src="$store.state.baseUrl+item.img" :alt="item.id">
                   </span>
                 </li>
                 <li class="item-right">

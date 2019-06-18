@@ -6,7 +6,7 @@
     <div v-for="(item, index) in comments" :key="index" class="item">
       <div class="item-head cearfix">
         <div class="pull-left avatar">
-          <img :src="item.avatar" alt="">
+          <img :src="$store.state.baseUrl + item.avatar" alt="">
         </div>
         <div class="pull-right user-info">
           <p class="name">{{ item.name }}</p>

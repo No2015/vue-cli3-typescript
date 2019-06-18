@@ -18,12 +18,13 @@ import Footer from '@/components/goods/Footer.vue'; // @ is an alias to /src
 })
 export default class Goods extends Vue {
   public beforeMount() {
-    if (!this.$route.query.gid) {
-      this.$router.back();
-    }
+    console.log(this.$route.params.id);
+    // if (!this.$route.query.gid) {
+    //   this.$router.back();
+    // }
   }
   public created() {
-    const gid = this.$route.query.gid;
+    const gid = this.$route.params.id;
     this.$store.dispatch('initGoodsDetail', gid);
   }
   get goodsDetail() {

@@ -3,7 +3,7 @@
     <div class="clearfix head">
       <div class="pull-left user-info-left">
         <label for="upload" class="avatar">
-          <img :src="userInfo.avatar" alt="">
+          <img :src="$store.state.baseUrl+userInfo.avatar" alt="">
           <input ref="upload" type="file" id="upload" class="hide" accept="image/*" @change="editAvatar" >
         </label>
       </div>
@@ -35,6 +35,7 @@ export default class CenterIndex extends Vue {
   }
   private showSetting() {
     console.log('setting');
+    this.$router.push('/center/setting');
   }
   private editAvatar() {
     const file = this.$refs.upload.files[0];

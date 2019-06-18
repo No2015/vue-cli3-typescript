@@ -18,7 +18,7 @@ export default new Router({
       },
     },
     {
-      path: '/goods',
+      path: '/goods/:id',
       name: 'goods',
       component: () => import('./views/Goods.vue'),
     },
@@ -31,6 +31,12 @@ export default new Router({
       path: '/center',
       name: 'center',
       component: () => import('./views/Center.vue'),
+      children: [
+        {
+          path: 'setting',
+          component: () => import('./components/center/Setting.vue'),
+        },
+      ],
     },
     {
       path: '/search',

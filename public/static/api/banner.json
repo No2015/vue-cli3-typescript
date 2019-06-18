@@ -1,18 +1,18 @@
 [
     {
         "img": "static/img/banner/1.jpg",
-        "url": "/goods?gid=10001"
+        "url": "/goods/10001"
     },
     {
         "img": "static/img/banner/2.jpg",
-        "url": "/goods?gid=10002"
+        "url": "/goods/10002"
     },
     {
         "img": "static/img/banner/2.jpg",
-        "url": "/goods?gid=10003"
+        "url": "/goods/10003"
     },
     {
         "img": "static/img/banner/2.jpg",
-        "url": "/goods?gid=10004"
+        "url": "/goods/10004"
     }
 ]

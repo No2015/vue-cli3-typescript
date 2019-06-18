@@ -5,7 +5,7 @@
     </div>
     <div class="list clearfix">
       <div class="list-item pull-left tc" v-for="(item, index) in list" :key="index" @click="toProduct(item.id)">
-        <img :src="item.img" :alt="item.title">
+        <img :src="$store.state.baseUrl+item.img" :alt="item.title">
         <p class="price">￥{{ item.price }}</p>
         <p class="title">{{ item.title }}</p>
       </div>
@@ -23,7 +23,9 @@ export default class HomeList extends Vue {
   }
 
   private toProduct(id: string) {
-    this.$router.push({ path: 'goods', query: { gid: id }});
+    // this.$router.push({ path: 'goods', query: { gid: id }});
+    // this.$router.push('/goods/'+id);
+    this.$router.push({ name: 'goods', params: { id }});
   }
 }
 </script>

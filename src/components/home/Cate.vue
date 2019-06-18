@@ -5,7 +5,7 @@
     </div>
     <div class="cate clearfix">
       <div class="cate-item pull-left tc" v-for="(item, index) in cate" :key="index" @click="toCate(item.id)">
-        <img :src="item.img" :alt="item.title">
+        <img :src="$store.state.baseUrl+item.img" :alt="item.title">
         <p class="price">￥{{ item.price }}</p>
         <p class="title">{{ item.title }}</p>
       </div>

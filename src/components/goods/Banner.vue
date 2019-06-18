@@ -3,7 +3,7 @@
     <div class="wrap-swiper">
       <swiper v-if="banner.length > 0" :options="swiperOption" ref="mySwiper">
         <swiper-slide v-for="(item, index) in banner" :key="index">
-          <img :src="item" alt="">
+          <img :src="$store.state.baseUrl + item" alt="">
         </swiper-slide>
         <div class="swiper-pagination" slot="pagination"></div>
       </swiper>

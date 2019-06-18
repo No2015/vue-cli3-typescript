@@ -2,7 +2,7 @@
   <div class="product">
     <div class="list clearfix">
       <div class="list-item pull-left tc" v-for="(item, index) in list" :key="index" @click="toProduct(item.id)">
-        <img :src="item.img" :alt="item.title">
+        <img :src="$store.state.baseUrl+item.img" :alt="item.title">
         <p class="price">￥{{ item.price }}</p>
         <p class="title">{{ item.title }}</p>
       </div>

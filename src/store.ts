@@ -7,6 +7,7 @@ import { API } from '@/global/api';
 Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
+    baseUrl: process.env.NODE_ENV === 'production' ? '/vue-ts/' : '/',
     homeList: [],
     homeBanner: [],
     homeCate: [],

@@ -4,7 +4,7 @@
       <span>详情</span>
     </div>
     <div class="detail-img">
-      <img v-for="(item, index) in imgs" :key="index" :src="item" alt="">
+      <img v-for="(item, index) in imgs" :key="index" :src="$store.state.baseUrl + item" alt="">
     </div>
   </div>
 </template>
